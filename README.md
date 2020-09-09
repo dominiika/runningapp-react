@@ -1,4 +1,4 @@
-# runningapp-flask-restful
+# runningapp-react
 
 ##### ** **The application is still in development** **
 
