@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import M from 'materialize-css';
 import Bmi from './Bmi';
 import Login from './Login';
+import SignUp from './SignUp';
 import { Link, withRouter } from 'react-router-dom';
 
 function Navbar() {
@@ -67,7 +68,9 @@ function Navbar() {
                   <Link to="#">Trainings</Link>
                 </li>
                 <li>
-                  <Link to="#">Sign Up</Link>
+                  <a href="#signup" className="modal-trigger">
+                    Sign Up
+                  </a>
                 </li>
                 <li>
                   <a
@@ -115,7 +118,9 @@ function Navbar() {
             </a>
           </li>
           <li>
-            <Link to="#">Sign Up</Link>
+            <a href="#signup" className="modal-trigger">
+              Sign Up
+            </a>
           </li>
           <li>
             <a href="#bmi" className="modal-trigger">
@@ -127,6 +132,7 @@ function Navbar() {
 
       <Bmi />
       <Login />
+      <SignUp />
     </React.Fragment>
   );
 }

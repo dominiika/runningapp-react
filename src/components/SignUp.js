@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Login extends Component {
+class SignUp extends Component {
   state = {
     username: '',
     password: '',
@@ -8,14 +8,10 @@ class Login extends Component {
 
   handleInputChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
-    // console.log(event.target.name);
-    // console.log(event.target.value);
-    // console.log(this.state.username);
-    // console.log(this.state.password);
   };
 
-  handleFetchLogin = () => {
-    fetch(`http://127.0.0.1:5000/login`, {
+  handleFetchSignup = () => {
+    fetch(`http://127.0.0.1:5000/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -31,9 +27,9 @@ class Login extends Component {
   render() {
     return (
       <React.Fragment>
-        <div id="login" className="modal">
+        <div id="signup" className="modal">
           <div className="modal-content">
-            <h4>LOG IN</h4>
+            <h4>SIGN UP</h4>
             <form>
               <div className="input-field">
                 <input
@@ -58,10 +54,10 @@ class Login extends Component {
           <div className="modal-footer">
             <button
               type="submit"
-              onClick={this.handleFetchLogin}
+              onClick={this.handleFetchSignup}
               className="modal-close btn cyan accent-3 waves-effect waves-dark black-text"
             >
-              Login
+              Sign up
             </button>
           </div>
         </div>
@@ -70,4 +66,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default SignUp;
