@@ -4,22 +4,44 @@ class Bmi extends Component {
   state = {
     height: 0,
     weight: 0,
+    bmi: 0,
+    msg: null,
   };
 
   handleInputChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  handleFetchBmi = (event) => {
-    // console.log(this.state.height);
-    // console.log(this.state.weight);
-    event.preventDefault();
-    fetch(`http://127.0.0.1:5000/bmi`, {
-      method: 'POST',
-    })
-      .then((res) => res.json())
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+  calculateBmi = () => {
+    let validated = this.validate(this.state.weight, this.state.height);
+    if (validated) {
+      let bmi = Math.round(this.state.weight / (this.state.height / 100) ** 2);
+      this.setState({ bmi });
+      this.getMessage(bmi);
+    }
+  };
+
+  getMessage = (bmi) => {
+    if (bmi < 18.5) {
+      this.setState({ msg: "You're underweight." });
+    } else if (18.5 <= bmi <= 24.9) {
+      this.setState({ msg: 'Your weight is correct.' });
+    } else if (25 <= bmi <= 29.9) {
+      this.setState({ msg: "You're overweight." });
+    } else {
+      this.setState({ msg: "You're obese." });
+    }
+  };
+
+  validate = (weight, height) => {
+    if (weight < 30 || weight > 200 || height < 120 || height > 250) {
+      this.setState({
+        msg:
+          'Please provide numerical values in range 30-200 (weight) and 120-250 (height).',
+      });
+      return false;
+    }
+    return true;
   };
 
   render() {
@@ -35,6 +57,7 @@ class Bmi extends Component {
                   className="text"
                   name="height"
                   onChange={this.handleInputChange}
+                  type="number"
                 />
                 <label htmlFor="height">Height</label>
               </div>
@@ -44,16 +67,21 @@ class Bmi extends Component {
                   className="text"
                   name="weight"
                   onChange={this.handleInputChange}
+                  type="number"
                 />
                 <label htmlFor="weight">Weight</label>
               </div>
             </form>
+            <span className="text-center">
+              Your BMI is: <strong>{this.state.bmi}</strong>
+              <br />
+              {this.state.msg}
+            </span>
           </div>
           <div className="modal-footer">
             <button
-              type="submit"
-              onClick={this.handleFetchBmi}
-              className="modal-close btn cyan accent-3 waves-effect waves-dark black-text"
+              onClick={this.calculateBmi}
+              className="btn cyan accent-3 waves-effect waves-dark black-text"
             >
               Calculate
             </button>

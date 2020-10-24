@@ -26,6 +26,10 @@ main {
   margin-right: 15px;
 }
 
+/* .nav-wrapper .a:hover {
+  color: #00e5ff !important;
+} */
+
 /* Side nav */
 .user-view {
   background: rgba(63, 57, 77, 0.4);

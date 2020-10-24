@@ -5,7 +5,7 @@ import Login from './Login';
 import SignUp from './SignUp';
 import { Link, withRouter } from 'react-router-dom';
 
-function Navbar() {
+function Navbar(props) {
   useEffect(() => {
     M.AutoInit();
     handleSidenavInit();
@@ -38,6 +38,24 @@ function Navbar() {
     M.Modal.init(elems, options);
   };
 
+  const handleLogOut = () => {
+    fetch(`http://127.0.0.1:5000/logout`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+    }).catch((err) => console.log(err));
+    let path = '/';
+    props.cookies.remove('token', {
+      path: path,
+    });
+    props.cookies.remove('user', {
+      path: path,
+    });
+    props.cookies.remove('username', {
+      path: path,
+    });
+    window.location.reload();
+  };
+
   return (
     <React.Fragment>
       {/* Nav */}
@@ -65,26 +83,53 @@ function Navbar() {
                   </Link>
                 </li>
                 <li>
-                  <Link to="#">Trainings</Link>
+                  <Link to="/trainings">Trainings</Link>
                 </li>
-                <li>
-                  <a href="#signup" className="modal-trigger">
-                    Sign Up
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#login"
-                    className="btn cyan accent-3 waves-effect waves-dark black-text modal-trigger"
-                  >
-                    LOGIN
-                  </a>
-                </li>
+                {!props.cookies.get('token') && (
+                  <React.Fragment>
+                    <li>
+                      <a href="#signup" className="modal-trigger">
+                        Sign Up
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#login"
+                        className="btn cyan accent-3 waves-effect waves-dark black-text modal-trigger"
+                      >
+                        LOGIN
+                      </a>
+                    </li>
+                  </React.Fragment>
+                )}
                 <li>
                   <a className="last-nav-li modal-trigger" href="#bmi">
                     BMI
                   </a>
                 </li>
+                {props.cookies.get('token') && (
+                  <React.Fragment>
+                    <li>
+                      <a href="#" className="cyan-text text-accent-3">
+                        Hi, {props.cookies.get('username')}!
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        onClick={handleLogOut}
+                        className="modal-trigger"
+                      >
+                        Log out
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <i className="fa fa-user" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                  </React.Fragment>
+                )}
               </ul>
             </div>
           </nav>
@@ -110,29 +155,53 @@ function Navbar() {
             </Link>
           </li>
           <li>
-            <Link to="#">Trainings</Link>
+            <Link to="/trainings">Trainings</Link>
           </li>
-          <li>
-            <a href="#login" className="modal-trigger">
-              Log In
-            </a>
-          </li>
-          <li>
-            <a href="#signup" className="modal-trigger">
-              Sign Up
-            </a>
-          </li>
+          {!props.cookies.get('token') && (
+            <React.Fragment>
+              <li>
+                <a href="#login" className="modal-trigger">
+                  Log In
+                </a>
+              </li>
+              <li>
+                <a href="#signup" className="modal-trigger">
+                  Sign Up
+                </a>
+              </li>
+            </React.Fragment>
+          )}
+
           <li>
             <a href="#bmi" className="modal-trigger">
               BMI
             </a>
           </li>
+          {props.cookies.get('token') && (
+            <React.Fragment>
+              <li>
+                <a href="#" className="cyan-text text-accent-5">
+                  Hi, {props.cookies.get('username')}!
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <i className="fa fa-user black-text" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
+                <a href="#" onClick={handleLogOut} className="modal-trigger">
+                  Log out
+                </a>
+              </li>
+            </React.Fragment>
+          )}
         </ul>
       </header>
 
       <Bmi />
-      <Login />
-      <SignUp />
+      <Login cookies={props.cookies} />
+      <SignUp cookies={props.cookies} />
     </React.Fragment>
   );
 }

@@ -6,18 +6,29 @@ import HomePage from './HomePage';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import Test from './Test';
+import TrainingsList from './TrainingsList';
+import { withCookies } from 'react-cookie';
 
-function App() {
+function App(props) {
   return (
     <React.Fragment>
-      <Navbar />
+      <Navbar cookies={props.cookies} />
       <Switch>
-        <Route exact path="/" render={() => <HomePage />} />
+        <Route
+          exact
+          path="/"
+          render={() => <HomePage cookies={props.cookies} />}
+        />
         <Route path="/test" render={() => <Test />} />
+        <Route
+          exact
+          path="/trainings"
+          render={() => <TrainingsList cookies={props.cookies} />}
+        />
       </Switch>
       <Footer />
     </React.Fragment>
   );
 }
 
-export default withRouter(App);
+export default withCookies(withRouter(App));

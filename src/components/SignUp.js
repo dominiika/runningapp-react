@@ -11,6 +11,7 @@ class SignUp extends Component {
   };
 
   handleFetchSignup = () => {
+    let resStatus = 0;
     fetch(`http://127.0.0.1:5000/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -19,9 +20,37 @@ class SignUp extends Component {
         password: this.state.password,
       }),
     })
-      .then((res) => res.json())
-      .then((res) => console.log(res))
+      .then((res) => {
+        resStatus = res.status;
+        console.log(res.status);
+        return res.json();
+      })
+      .then((res) => {
+        if (resStatus === 201) {
+          this.tokenSetUp(res);
+          console.log(res);
+        }
+      })
       .catch((err) => console.log(err));
+    window.location.reload();
+  };
+
+  tokenSetUp = (res) => {
+    let path = '/';
+    let today = new Date();
+    let tomorrow = new Date(today.getTime() + 24 * 60 * 60 * 1000);
+    this.props.cookies.set('token', res.token, {
+      expires: tomorrow,
+      path: path,
+    });
+    this.props.cookies.set('user', res.user, {
+      expires: tomorrow,
+      path: path,
+    });
+    this.props.cookies.set('username', res.username, {
+      expires: tomorrow,
+      path: path,
+    });
   };
 
   render() {
