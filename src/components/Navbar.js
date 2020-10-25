@@ -41,7 +41,10 @@ function Navbar(props) {
   const handleLogOut = () => {
     fetch(`http://127.0.0.1:5000/logout`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: props.cookies.get('token'),
+      },
     }).catch((err) => console.log(err));
     let path = '/';
     props.cookies.remove('token', {
@@ -53,7 +56,7 @@ function Navbar(props) {
     props.cookies.remove('username', {
       path: path,
     });
-    window.location.reload();
+    // window.location.reload();
   };
 
   return (
@@ -115,13 +118,7 @@ function Navbar(props) {
                       </a>
                     </li>
                     <li>
-                      <a
-                        href="#"
-                        onClick={handleLogOut}
-                        className="modal-trigger"
-                      >
-                        Log out
-                      </a>
+                      <a onClick={handleLogOut}>Log out</a>
                     </li>
                     <li>
                       <a href="#">

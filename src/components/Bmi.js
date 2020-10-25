@@ -53,7 +53,6 @@ class Bmi extends Component {
             <form>
               <div className="input-field">
                 <input
-                  type="text"
                   className="text"
                   name="height"
                   onChange={this.handleInputChange}
@@ -63,7 +62,6 @@ class Bmi extends Component {
               </div>
               <div className="input-field">
                 <input
-                  type="text"
                   className="text"
                   name="weight"
                   onChange={this.handleInputChange}

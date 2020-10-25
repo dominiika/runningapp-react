@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
+import Training from './Training';
+import Header from './Header';
 
 class TrainingsList extends Component {
   state = {
     trainings: [],
     isLoading: true,
+    prevToken: this.props.cookies.get('token'),
   };
 
   componentDidMount() {
     if (this.props.cookies.get('token')) {
+      this.fetchTrainings();
+    }
+  }
+
+  componentDidUpdate() {
+    let currentToken = this.props.cookies.get('token');
+    if (this.state.prevToken !== currentToken) {
       this.fetchTrainings();
     }
   }
@@ -28,57 +38,31 @@ class TrainingsList extends Component {
   };
 
   render() {
-    console.log(this.state.trainings);
+    // console.log('prev in render', this.state.prevProps);
     return (
-      <div className="container">
-        <h3 className="center">Your trainings</h3>
-        {this.state.trainings && this.state.trainings.length > 0 ? (
-          <React.Fragment>
-            {this.state.trainings.map((training) => {
-              // return <p key={training.id}>{training.name}</p>;
-              return (
-                <div>
-                  <ul className="collection z-depth-2">
-                    <li className="collection-item avatar">
-                      <img src="images/yuna.jpg" alt="" className="circle" />
-                      <h5 className="">{training.name}</h5>
-                      <p>
-                        {training.distance} km <br />
-                        {training.calories} calories burnt <br />
-                        {training.time_in_seconds / 60} minutes <br />
-                        {training.avg_tempo} km/h on average <br />
-                        {training.date} <br />
-                      </p>
-                      <a href="#!" className="secondary-content">
-                        {/* <i className="material-icons">grade</i> */}
-                        See more details
-                        <i
-                          style={{ paddingLeft: '5px' }}
-                          className="fas fa-angle-double-right"
-                        ></i>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              );
-            })}
-          </React.Fragment>
-        ) : null}
-
-        {/* <ul className="collection z-depth-2">
-          <li className="collection-item avatar">
-            <img src="images/yuna.jpg" alt="" className="circle" />
-            <span className="title">Title</span>
-            <p>
-              First Line <br />
-              Second Line
-            </p>
-            <a href="#!" className="secondary-content">
-              <i className="material-icons">grade</i>
-            </a>
-          </li>
-        </ul> */}
-      </div>
+      <React.Fragment>
+        <Header title="Your trainings" />
+        <section>
+          <div className="container">
+            {this.state.trainings && this.state.trainings.length > 0 ? (
+              <React.Fragment>
+                {this.state.trainings.map((training) => {
+                  // return <p key={training.id}>{training.name}</p>;
+                  return (
+                    <div key={training.id}>
+                      <ul className="collection z-depth-2">
+                        <li className="collection-item avatar">
+                          <Training training={training} />
+                        </li>
+                      </ul>
+                    </div>
+                  );
+                })}
+              </React.Fragment>
+            ) : null}
+          </div>
+        </section>
+      </React.Fragment>
     );
   }
 }

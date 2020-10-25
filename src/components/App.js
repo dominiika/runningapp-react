@@ -7,6 +7,7 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import Test from './Test';
 import TrainingsList from './TrainingsList';
+import TrainingDetail from './TrainingDetail';
 import { withCookies } from 'react-cookie';
 
 function App(props) {
@@ -24,6 +25,13 @@ function App(props) {
           exact
           path="/trainings"
           render={() => <TrainingsList cookies={props.cookies} />}
+        />
+        <Route
+          exact
+          path="/trainings/:id"
+          render={(params) => (
+            <TrainingDetail {...params} cookies={props.cookies} />
+          )}
         />
       </Switch>
       <Footer />
