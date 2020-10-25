@@ -1,24 +1,32 @@
 import React, { Component } from 'react';
 import Training from './Training';
 import Header from './Header';
+import Divider from './Divider';
+
+// ZROBIC TAK ZEBY LOGOUT ZMIENIALO FETCHED NA FALSE. redux?
 
 class TrainingsList extends Component {
   state = {
     trainings: [],
     isLoading: true,
     prevToken: this.props.cookies.get('token'),
+    fetched: false,
   };
 
   componentDidMount() {
     if (this.props.cookies.get('token')) {
       this.fetchTrainings();
+      // } else {
+      // this.setState({ fetched: false });
     }
   }
 
   componentDidUpdate() {
     let currentToken = this.props.cookies.get('token');
-    if (this.state.prevToken !== currentToken) {
+    if (this.state.prevToken !== currentToken && !this.state.fetched) {
       this.fetchTrainings();
+      console.log('cur;=', currentToken);
+      console.log('prev', this.state.prevToken);
     }
   }
 
@@ -32,16 +40,21 @@ class TrainingsList extends Component {
     })
       .then((resp) => resp.json())
       .then((res) => {
-        this.setState({ trainings: res.trainings, isLoading: false });
+        this.setState({
+          trainings: res.trainings,
+          isLoading: false,
+          fetched: true,
+        });
       })
       .catch((error) => console.log(error));
   };
 
   render() {
-    // console.log('prev in render', this.state.prevProps);
+    console.log('prev in render', this.state.prevProps);
     return (
       <React.Fragment>
         <Header title="Your trainings" />
+        <Divider />
         <section>
           <div className="container">
             {this.state.trainings && this.state.trainings.length > 0 ? (
@@ -62,6 +75,7 @@ class TrainingsList extends Component {
             ) : null}
           </div>
         </section>
+        <Divider />
       </React.Fragment>
     );
   }

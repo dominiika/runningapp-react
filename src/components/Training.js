@@ -8,7 +8,7 @@ function Training(props) {
       <Link to={`/trainings/${props.training.id}`}>
         <h5 className="">{props.training.name}</h5>
       </Link>
-      <p>
+      <p className="bolder-text">
         {props.training.distance} km <br />
         {props.training.calories} calories burnt <br />
         {props.training.time_in_seconds / 60} minutes <br />

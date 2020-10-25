@@ -39,7 +39,7 @@ function Navbar(props) {
   };
 
   const handleLogOut = () => {
-    fetch(`http://127.0.0.1:5000/logout`, {
+    fetch('http://127.0.0.1:5000/logout', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

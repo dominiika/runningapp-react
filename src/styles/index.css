@@ -173,6 +173,19 @@ footer i:hover {
   font-size: 0.9rem;
 }
 
+/* Training Detail */
+.section-training-detail .training-stats {
+  margin-bottom: 70px;
+}
+
+.training-squares p {
+  font-size: 1.2rem;
+}
+
+.bolder-text {
+  font-weight: bold;
+}
+
 @media (max-width: 600px) {
   .section-slider .slides li .caption {
     margin-top: 100px;
