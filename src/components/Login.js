@@ -13,7 +13,7 @@ class Login extends Component {
 
   handleInputChange = (event) => {
     let name = event.target.name;
-    let input = document.getElementById(name);
+    let input = document.getElementById(`login-${name}`);
     input.className = 'text';
     this.setState({
       [name]: event.target.value,
@@ -32,12 +32,12 @@ class Login extends Component {
   validateInputs = () => {
     if (this.state.username === '') {
       this.setState({ usernameErr: REQUIRED_ERR });
-      let usernameInput = document.getElementById('username');
+      let usernameInput = document.getElementById('login-username');
       usernameInput.classList.add('invalid');
     }
     if (this.state.password === '') {
       this.setState({ passwordErr: REQUIRED_ERR });
-      let passwordInput = document.getElementById('password');
+      let passwordInput = document.getElementById('login-password');
       passwordInput.classList.add('invalid');
     }
   };
@@ -63,8 +63,8 @@ class Login extends Component {
           document.getElementById('login').M_Modal.close();
         } else {
           this.setState({ msg: res.message });
-          document.getElementById('username').classList.add('invalid');
-          document.getElementById('password').classList.add('invalid');
+          document.getElementById('login-username').classList.add('invalid');
+          document.getElementById('login-password').classList.add('invalid');
         }
       })
       .catch((err) => console.log(err));
@@ -102,7 +102,7 @@ class Login extends Component {
                   className="text"
                   name="username"
                   onChange={this.handleInputChange}
-                  id="username"
+                  id="login-username"
                 />
                 <label htmlFor="username">Username</label>
                 <span className="err-msg text">{this.state.usernameErr}</span>
@@ -113,7 +113,7 @@ class Login extends Component {
                   className="text"
                   name="password"
                   onChange={this.handleInputChange}
-                  id="password"
+                  id="login-password"
                 />
                 <label htmlFor="weight">Password</label>
                 <span className="err-msg text">{this.state.passwordErr}</span>
