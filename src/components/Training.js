@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function Training(props) {
   return (
@@ -19,13 +19,11 @@ function Training(props) {
         to={`/trainings/${props.training.id}`}
         className="secondary-content"
       >
-        {/* <a href="#!" className="secondary-content"> */}
         See more details
         <i
           style={{ paddingLeft: '5px' }}
           className="fas fa-angle-double-right"
         ></i>
-        {/* </a> */}
       </Link>
     </div>
   );

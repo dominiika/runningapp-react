@@ -1,16 +1,48 @@
 import React, { Component } from 'react';
 
+const REQUIRED_ERR = 'This field is required';
+
 class Login extends Component {
   state = {
     username: '',
     password: '',
+    usernameErr: null,
+    passwordErr: null,
+    msg: null,
   };
 
   handleInputChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
+    let name = event.target.name;
+    let input = document.getElementById(name);
+    input.className = 'text';
+    this.setState({
+      [name]: event.target.value,
+      [`${name}Err`]: null,
+      msg: null,
+    });
   };
 
-  handleFetchLogin = () => {
+  login = () => {
+    this.validateInputs();
+    if (this.state.username !== '' && this.state.password !== '') {
+      this.fetchLogin();
+    }
+  };
+
+  validateInputs = () => {
+    if (this.state.username === '') {
+      this.setState({ usernameErr: REQUIRED_ERR });
+      let usernameInput = document.getElementById('username');
+      usernameInput.classList.add('invalid');
+    }
+    if (this.state.password === '') {
+      this.setState({ passwordErr: REQUIRED_ERR });
+      let passwordInput = document.getElementById('password');
+      passwordInput.classList.add('invalid');
+    }
+  };
+
+  fetchLogin = () => {
     let resStatus = 0;
     fetch(`http://127.0.0.1:5000/login`, {
       method: 'POST',
@@ -28,11 +60,14 @@ class Login extends Component {
       .then((res) => {
         if (resStatus === 200) {
           this.tokenSetUp(res);
-          console.log(res);
+          document.getElementById('login').M_Modal.close();
+        } else {
+          this.setState({ msg: res.message });
+          document.getElementById('username').classList.add('invalid');
+          document.getElementById('password').classList.add('invalid');
         }
       })
       .catch((err) => console.log(err));
-    // window.location.reload();
   };
 
   tokenSetUp = (res) => {
@@ -54,7 +89,7 @@ class Login extends Component {
   };
 
   render() {
-    console.log(this.props.cookies);
+    console.log(this.props.usernameErr);
     return (
       <React.Fragment>
         <div id="login" className="modal">
@@ -67,8 +102,10 @@ class Login extends Component {
                   className="text"
                   name="username"
                   onChange={this.handleInputChange}
+                  id="username"
                 />
-                <label htmlFor="height">Username</label>
+                <label htmlFor="username">Username</label>
+                <span className="err-msg text">{this.state.usernameErr}</span>
               </div>
               <div className="input-field">
                 <input
@@ -76,16 +113,20 @@ class Login extends Component {
                   className="text"
                   name="password"
                   onChange={this.handleInputChange}
+                  id="password"
                 />
                 <label htmlFor="weight">Password</label>
+                <span className="err-msg text">{this.state.passwordErr}</span>
               </div>
             </form>
+            <p className="err-msg">{this.state.msg}</p>
           </div>
           <div className="modal-footer">
             <button
               type="submit"
-              onClick={this.handleFetchLogin}
-              className="modal-close btn cyan accent-3 waves-effect waves-dark black-text"
+              onClick={this.login}
+              className="btn cyan accent-3 waves-effect waves-dark black-text"
+              id="login-btn"
             >
               Login
             </button>

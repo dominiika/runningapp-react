@@ -11,6 +11,12 @@ function Slider() {
     handleScrollSpy();
   }, []);
 
+  // useEffect(() => {
+  //   console.log('updated');
+  //   M.AutoInit();
+  //   handleScrollSpy();
+  // });
+
   const handleScrollSpy = () => {
     let elems = document.querySelectorAll('.scrollspy');
     let options = {};
