@@ -1,42 +1,24 @@
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import 'materialize-css/dist/css/materialize.min.css';
-import HomePage from './HomePage';
-import Navbar from './Navbar';
-import Footer from './Footer';
-import Test from './Test';
-import TrainingsList from './TrainingsList';
-import TrainingDetail from './TrainingDetail';
-import { withCookies } from 'react-cookie';
 
-function App(props) {
-  return (
-    <React.Fragment>
-      <Navbar cookies={props.cookies} />
-      <Switch>
-        <Route
-          exact
-          path="/"
-          render={() => <HomePage cookies={props.cookies} />}
-        />
-        <Route path="/test" render={() => <Test />} />
-        <Route
-          exact
-          path="/trainings"
-          render={() => <TrainingsList cookies={props.cookies} />}
-        />
-        <Route
-          exact
-          path="/trainings/:id"
-          render={(params) => (
-            <TrainingDetail {...params} cookies={props.cookies} />
-          )}
-        />
-      </Switch>
-      <Footer />
-    </React.Fragment>
-  );
+import { withCookies } from 'react-cookie';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actions from '../redux/actions';
+import Main from './Main';
+
+function mapStateToProps(state) {
+  return {
+    things: state.things,
+  };
 }
 
-export default withCookies(withRouter(App));
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(actions, dispatch);
+}
+
+const App = withCookies(
+  withRouter(connect(mapStateToProps, mapDispatchToProps)(Main))
+);
+
+export default App;

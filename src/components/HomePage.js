@@ -17,8 +17,7 @@ class HomePage extends Component {
         <Gallery />
         <Divider />
         <Stats />
-
-        <About />
+        <About {...this.props} />
 
         <Divider />
       </main>

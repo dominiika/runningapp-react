@@ -3,7 +3,7 @@ import shoes from '../assets/shoes.jpg';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 
-function About() {
+function About(props) {
   useEffect(() => {
     Aos.init({ duration: 3000 });
   }, []);
@@ -22,6 +22,9 @@ function About() {
               sapiente nobis nisi rerum reprehenderit animi beatae iusto eaque
               nesciunt omnis quae dicta, ut ad sunt. Eveniet, voluptatibus!
             </p>
+            {props.things.map((thing) => {
+              return <p key={thing}>{thing}</p>;
+            })}
           </div>
         </div>
       </div>
