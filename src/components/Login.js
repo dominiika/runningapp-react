@@ -67,7 +67,7 @@ function Login(props) {
       .then((res) => {
         if (resStatus === 200) {
           tokenSetUp(res);
-          setGlobalState({ refetch: true });
+          setGlobalState({ didLogIn: true, didLogOut: false, refetch: true });
           document.getElementById('login').M_Modal.close();
         } else {
           setMsg(res.message);

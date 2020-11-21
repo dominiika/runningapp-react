@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 const initialState = {
   refetch: false,
+  didLogIn: false,
+  didLogOut: false,
 };
 
 export const Context = React.createContext();

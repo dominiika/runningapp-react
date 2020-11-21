@@ -29,16 +29,14 @@ function TrainingDetail(props) {
       .then((resp) => resp.json())
       .then((res) => {
         setTraining(res);
-        // this.setState({ training: res, isLoading: false, fetched: true });
+        setGlobalState({ didLogIn: false, didLogOut: false, refetch: false });
       })
       .catch((error) => console.log(error));
   };
 
-  console.log(Object.keys(training));
-
   return (
     <React.Fragment>
-      {Object.keys(training).length > 0 ? (
+      {Object.keys(training).length > 1 ? (
         <React.Fragment>
           <Header title="" />
           <Divider />

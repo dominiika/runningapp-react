@@ -15,6 +15,7 @@ function TrainingsList(props) {
   }, []);
 
   useEffect(() => {
+    console.log('did update');
     if (globalState.refetch) {
       fetchTrainings();
     }
@@ -31,7 +32,7 @@ function TrainingsList(props) {
       .then((resp) => resp.json())
       .then((res) => {
         setTrainings(res.trainings);
-        setGlobalState({ refetch: false });
+        setGlobalState({ didLogIn: false, didLogOut: false, refetch: false });
       })
       .catch((error) => console.log(error));
   };

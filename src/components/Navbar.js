@@ -49,7 +49,7 @@ function Navbar(props) {
         Authorization: props.cookies.get('token'),
       },
     })
-      .then(setGlobalState({ refetch: true }))
+      .then(setGlobalState({ didLogIn: false, didLogOut: true, refetch: true }))
       .catch((err) => console.log(err));
     let path = '/';
     props.cookies.remove('token', {
