@@ -6,27 +6,20 @@ import { Route, Switch } from 'react-router-dom';
 import HomePage from './HomePage';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import Test from './Test';
 import TrainingsList from './TrainingsList';
 import TrainingDetail from './TrainingDetail';
+import Store from '../Store';
 
 function App(props) {
   return (
-    <React.Fragment>
+    <Store>
       <Navbar cookies={props.cookies} />
       <Switch>
         <Route
           exact
           path="/"
-          render={() => (
-            <HomePage
-              cookies={props.cookies}
-              {...props}
-              things={props.things}
-            />
-          )}
+          render={() => <HomePage cookies={props.cookies} />}
         />
-        <Route path="/test" render={() => <Test />} />
         <Route
           exact
           path="/trainings"
@@ -41,7 +34,7 @@ function App(props) {
         />
       </Switch>
       <Footer />
-    </React.Fragment>
+    </Store>
   );
 }
 
