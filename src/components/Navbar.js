@@ -4,6 +4,7 @@ import Bmi from './Bmi';
 import Login from './Login';
 import SignUp from './SignUp';
 import Logout from './Logout';
+import AddTraining from './AddTraining';
 import { Link, withRouter } from 'react-router-dom';
 
 function Navbar(props) {
@@ -61,9 +62,9 @@ function Navbar(props) {
               </Link>
               <ul id="nav-mobile" className="right hide-on-med-and-down">
                 <li>
-                  <Link to="/test">
+                  <a href="#add-training" className="modal-trigger">
                     <i className="material-icons">add</i>
-                  </Link>
+                  </a>
                 </li>
                 <li>
                   <Link to="/trainings">Trainings</Link>
@@ -173,6 +174,7 @@ function Navbar(props) {
       <Bmi />
       <Login cookies={props.cookies} />
       <SignUp cookies={props.cookies} />
+      <AddTraining cookies={props.cookies} />
     </React.Fragment>
   );
 }

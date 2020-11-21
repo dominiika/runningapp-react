@@ -97,48 +97,46 @@ class SignUp extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <div id="signup" className="modal">
-          <div className="modal-content">
-            <h4>SIGN UP</h4>
-            <form>
-              <div className="input-field">
-                <input
-                  type="text"
-                  className="text"
-                  name="username"
-                  onChange={this.handleInputChange}
-                  id="signup-username"
-                />
-                <label htmlFor="height">Username</label>
-                <span className="err-msg text">{this.state.usernameErr}</span>
-              </div>
-              <div className="input-field">
-                <input
-                  type="password"
-                  className="text"
-                  name="password"
-                  onChange={this.handleInputChange}
-                  id="signup-password"
-                />
-                <label htmlFor="weight">Password</label>
-                <span className="err-msg text">{this.state.passwordErr}</span>
-              </div>
-            </form>
-            <p className="err-msg">{this.state.errMsg}</p>
-            {/* <p className="green-text text-accent-4">{this.state.successMsg}</p> */}
-          </div>
-          <div className="modal-footer">
-            <button
-              type="submit"
-              onClick={this.signUp}
-              className="btn cyan accent-3 waves-effect waves-dark black-text"
-            >
-              Sign up
-            </button>
-          </div>
+      <div id="signup" className="modal">
+        <div className="modal-content">
+          <h4>SIGN UP</h4>
+          <form>
+            <div className="input-field">
+              <input
+                type="text"
+                className="text"
+                name="username"
+                onChange={this.handleInputChange}
+                id="signup-username"
+              />
+              <label htmlFor="height">Username</label>
+              <span className="err-msg text">{this.state.usernameErr}</span>
+            </div>
+            <div className="input-field">
+              <input
+                type="password"
+                className="text"
+                name="password"
+                onChange={this.handleInputChange}
+                id="signup-password"
+              />
+              <label htmlFor="weight">Password</label>
+              <span className="err-msg text">{this.state.passwordErr}</span>
+            </div>
+          </form>
+          <p className="err-msg">{this.state.errMsg}</p>
+          {/* <p className="green-text text-accent-4">{this.state.successMsg}</p> */}
         </div>
-      </React.Fragment>
+        <div className="modal-footer">
+          <button
+            type="submit"
+            onClick={this.signUp}
+            className="btn cyan accent-3 waves-effect waves-dark black-text"
+          >
+            Sign up
+          </button>
+        </div>
+      </div>
     );
   }
 }

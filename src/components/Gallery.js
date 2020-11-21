@@ -17,6 +17,9 @@ function Gallery() {
         <div className="overlay">
           <div className="container" data-aos="fade">
             <h4 className="white-text center">
+              <i className="material-icons small cyan-text text-accent-3 icon-logo">
+                directions_run
+              </i>
               RunUp is a perfect place for dedicated runners
             </h4>
             <div className="row">

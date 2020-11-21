@@ -107,9 +107,16 @@ main {
   margin-bottom: 15px;
 }
 
+.stats-square {
+  border: dotted black 3px !important;
+}
+
 .section-stats .count-up-number {
   font-size: 2rem;
 }
+
+/* .section-stats .card-panel {
+} */
 
 /* About */
 .section-about {

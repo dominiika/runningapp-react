@@ -18,7 +18,6 @@ class HomePage extends Component {
         <Divider />
         <Stats />
         <About />
-
         <Divider />
       </main>
     );
