@@ -4,30 +4,23 @@ import Header from './Header';
 import Divider from './Divider';
 import { Context } from '../Store';
 
-// ZROBIC TAK ZEBY LOGOUT ZMIENIALO FETCHED NA FALSE.
-// fetchTrainings musi sie wykonywac za kazdym razem, gdy zmieni sie globalna zmienna isActive
-
 function TrainingsList(props) {
   const [globalState, setGlobalState] = useContext(Context);
   const [trainings, setTrainings] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [prevToken, setPrevToken] = useState(props.cookies.get('token'));
-  const [fetched, setFetched] = useState(false);
+  const [initialIsActive, setInitialIsActive] = useState(globalState.isActive);
 
   useEffect(() => {
+    console.log('!!!!!!component did mount');
+    console.log('token in cmount', props.cookies.get('token'));
+
     if (props.cookies.get('token')) {
       fetchTrainings();
-      // } else {
-      // this.setState({ fetched: false });
     }
   }, []);
 
   useEffect(() => {
-    let currentToken = props.cookies.get('token');
-    if (prevToken !== currentToken && !fetched) {
+    if (globalState.refetch) {
       fetchTrainings();
-      console.log('cur;=', currentToken);
-      console.log('prev', prevToken);
     }
   });
 
@@ -42,8 +35,7 @@ function TrainingsList(props) {
       .then((resp) => resp.json())
       .then((res) => {
         setTrainings(res.trainings);
-        setIsLoading(false);
-        setFetched(true);
+        setGlobalState({ refetch: false });
       })
       .catch((error) => console.log(error));
   };

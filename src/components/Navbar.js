@@ -1,11 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import M from 'materialize-css';
 import Bmi from './Bmi';
 import Login from './Login';
 import SignUp from './SignUp';
 import { Link, withRouter } from 'react-router-dom';
+import { Context } from '../Store';
 
 function Navbar(props) {
+  const [globalState, setGlobalState] = useContext(Context);
+
   useEffect(() => {
     M.AutoInit();
     handleSidenavInit();
@@ -45,7 +48,9 @@ function Navbar(props) {
         'Content-Type': 'application/json',
         Authorization: props.cookies.get('token'),
       },
-    }).catch((err) => console.log(err));
+    })
+      .then(setGlobalState({ refetch: true }))
+      .catch((err) => console.log(err));
     let path = '/';
     props.cookies.remove('token', {
       path: path,
