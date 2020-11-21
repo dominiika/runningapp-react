@@ -3,12 +3,10 @@ import M from 'materialize-css';
 import Bmi from './Bmi';
 import Login from './Login';
 import SignUp from './SignUp';
+import Logout from './Logout';
 import { Link, withRouter } from 'react-router-dom';
-import { Context } from '../Store';
 
 function Navbar(props) {
-  const [globalState, setGlobalState] = useContext(Context);
-
   useEffect(() => {
     M.AutoInit();
     handleSidenavInit();
@@ -39,29 +37,6 @@ function Navbar(props) {
     let options = {};
     let elems = document.querySelectorAll('.modal');
     M.Modal.init(elems, options);
-  };
-
-  const handleLogOut = () => {
-    fetch('http://127.0.0.1:5000/logout', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: props.cookies.get('token'),
-      },
-    })
-      .then(setGlobalState({ didLogIn: false, didLogOut: true, refetch: true }))
-      .catch((err) => console.log(err));
-    let path = '/';
-    props.cookies.remove('token', {
-      path: path,
-    });
-    props.cookies.remove('user', {
-      path: path,
-    });
-    props.cookies.remove('username', {
-      path: path,
-    });
-    // window.location.reload();
   };
 
   return (
@@ -122,9 +97,7 @@ function Navbar(props) {
                         Hi, {props.cookies.get('username')}!
                       </a>
                     </li>
-                    <li>
-                      <a onClick={handleLogOut}>Log out</a>
-                    </li>
+                    <Logout cookies={props.cookies} mobile={false} />
                     <li>
                       <a href="#">
                         <i className="fa fa-user" aria-hidden="true"></i>
@@ -191,11 +164,7 @@ function Navbar(props) {
                   <i className="fa fa-user black-text" aria-hidden="true"></i>
                 </a>
               </li>
-              <li>
-                <a href="#" onClick={handleLogOut} className="modal-trigger">
-                  Log out
-                </a>
-              </li>
+              <Logout cookies={props.cookies} mobile={true} />
             </React.Fragment>
           )}
         </ul>
