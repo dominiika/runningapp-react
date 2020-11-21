@@ -3,7 +3,7 @@ import Training from './Training';
 import Header from './Header';
 import Divider from './Divider';
 
-// ZROBIC TAK ZEBY LOGOUT ZMIENIALO FETCHED NA FALSE. redux?
+// ZROBIC TAK ZEBY LOGOUT ZMIENIALO FETCHED NA FALSE.
 
 class TrainingsList extends Component {
   state = {

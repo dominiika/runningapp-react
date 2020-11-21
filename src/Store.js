@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 
 const initialState = {
-  name: 'Test name',
-  email: 'test@app.com',
+  isActive: false,
+  name: 'test name',
+  email: 'test@cscsc.pl',
 };
 
 export const Context = React.createContext();

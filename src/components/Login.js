@@ -74,7 +74,7 @@ class Login extends Component {
     let path = '/';
     let today = new Date();
     let tomorrow = new Date(today.getTime() + 24 * 60 * 60 * 1000);
-    this.props.cookies.set('token', res.token, {
+    this.props.cookies.set('token', res.access_token, {
       expires: tomorrow,
       path: path,
     });
@@ -89,7 +89,7 @@ class Login extends Component {
   };
 
   render() {
-    console.log(this.props.usernameErr);
+    console.log('username err', this.props.usernameErr);
     return (
       <React.Fragment>
         <div id="login" className="modal">
