@@ -191,6 +191,17 @@ footer i:hover {
   font-size: 1.2rem;
 }
 
+/* Shoes */
+
+.section-shoes {
+  padding-bottom: 60px;
+}
+
+.section-shoes .photos {
+  margin-bottom: 30px;
+}
+/* */
+
 .bolder-text {
   font-weight: bold;
 }

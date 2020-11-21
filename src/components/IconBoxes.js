@@ -44,6 +44,7 @@ function IconBoxes() {
             </div>
           </div>
         </div>
+        <div className="divider"></div>
       </div>
     </section>
   );

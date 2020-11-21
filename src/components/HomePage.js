@@ -5,6 +5,7 @@ import Divider from './Divider';
 import Slider from './Slider.js';
 import Gallery from './Gallery';
 import Stats from './Stats';
+import Shoes from './Shoes';
 
 class HomePage extends Component {
   render() {
@@ -17,6 +18,9 @@ class HomePage extends Component {
         <Gallery />
         <Divider />
         <Stats />
+        <Divider />
+        <Shoes />
+        <Divider />
         <About />
         <Divider />
       </main>

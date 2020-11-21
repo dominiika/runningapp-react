@@ -121,6 +121,7 @@ function Stats() {
               </div>
             </div>
           </div>
+          <div class="divider"></div>
         </div>
       </section>
     </React.Fragment>
