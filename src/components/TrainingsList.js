@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Training from './Training';
 import Header from './Header';
 import Divider from './Divider';
@@ -7,12 +7,8 @@ import { Context } from '../Store';
 function TrainingsList(props) {
   const [globalState, setGlobalState] = useContext(Context);
   const [trainings, setTrainings] = useState([]);
-  const [initialIsActive, setInitialIsActive] = useState(globalState.isActive);
 
   useEffect(() => {
-    console.log('!!!!!!component did mount');
-    console.log('token in cmount', props.cookies.get('token'));
-
     if (props.cookies.get('token')) {
       fetchTrainings();
     }
