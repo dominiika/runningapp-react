@@ -22,9 +22,6 @@ function About(props) {
               sapiente nobis nisi rerum reprehenderit animi beatae iusto eaque
               nesciunt omnis quae dicta, ut ad sunt. Eveniet, voluptatibus!
             </p>
-            {props.things.map((thing) => {
-              return <p key={thing}>{thing}</p>;
-            })}
           </div>
         </div>
       </div>
