@@ -1,25 +1,12 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect } from 'react';
 import shoes from '../assets/shoes.jpg';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
-// import { Context } from '../Store';
 
 function About() {
-  // const [globalState, setGlobalState] = useContext(Context);
-
   useEffect(() => {
     Aos.init({ duration: 3000 });
   }, []);
-
-  // const handleClick = () => {
-  //   let dict = {
-  //     name: 'name2',
-  //     email: globalState.email,
-  //   };
-  //   setGlobalState(dict);
-  // };
-
-  // console.log('global state', globalState);
 
   return (
     <section id="about" className="section-about scrollspy">
@@ -36,9 +23,6 @@ function About() {
               sapiente nobis nisi rerum reprehenderit animi beatae iusto eaque
               nesciunt omnis quae dicta, ut ad sunt. Eveniet, voluptatibus!
             </p>
-            {/* <p>{globalState.name}</p>
-            <p>{globalState.email}</p>
-            <button onClick={handleClick}>click me</button> */}
           </div>
         </div>
       </div>

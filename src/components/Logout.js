@@ -24,7 +24,6 @@ function Logout(props) {
     props.cookies.remove('username', {
       path: path,
     });
-    // window.location.reload();
   };
 
   return (

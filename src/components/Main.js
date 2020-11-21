@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React from 'react';
 import 'materialize-css/dist/css/materialize.min.css';
 import { Route, Switch } from 'react-router-dom';
 import HomePage from './HomePage';

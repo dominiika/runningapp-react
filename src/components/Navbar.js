@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect } from 'react';
 import M from 'materialize-css';
 import Bmi from './Bmi';
 import Login from './Login';
