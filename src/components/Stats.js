@@ -20,7 +20,7 @@ function Stats() {
         <div className="container">
           <div className="row" data-aos="fade">
             <div className="col s12 m4 center">
-              <div className="stats-square card-panel z-depth-2">
+              <div className="stats-square card-panel z-depth-2 grey darken-4 white-text">
                 <i className="fas fa-users medium"></i>
                 <CountUp
                   className="counter"
@@ -44,16 +44,16 @@ function Stats() {
                     </div>
                   )}
                 </CountUp>
-                <div className="progress grey lighten-4">
+                <div className="progress white">
                   <div
-                    className="determinate cyan darken-2"
+                    className="determinate cyan accent-3"
                     style={{ width: '50%' }}
                   ></div>
                 </div>
               </div>
             </div>
             <div className="col s12 m4 center">
-              <div className="stats-square z-depth-2 card-panel">
+              <div className="stats-square z-depth-2 card-panel cyan accent-3 grey-text text-darken-4">
                 <i className="fas fa-shoe-prints medium"></i>
                 <CountUp
                   className="counter"
@@ -78,16 +78,16 @@ function Stats() {
                     </div>
                   )}
                 </CountUp>
-                <div className="progress grey lighten-2">
+                <div className="progress white">
                   <div
-                    className="determinate cyan darken-2"
+                    className="determinate grey darken-4"
                     style={{ width: '90%' }}
                   ></div>
                 </div>
               </div>
             </div>
             <div className="col s12 m4 center">
-              <div className="stats-square z-depth-2 card-panel">
+              <div className="stats-square z-depth-2 card-panel grey darken-4 white-text">
                 <i className="fas fa-fire-alt medium"></i>
                 <CountUp
                   className="counter"
@@ -112,9 +112,9 @@ function Stats() {
                     </div>
                   )}
                 </CountUp>
-                <div className="progress grey lighten-4">
+                <div className="progress white">
                   <div
-                    className="determinate cyan darken-2"
+                    className="determinate cyan accent-3"
                     style={{ width: '80%' }}
                   ></div>
                 </div>

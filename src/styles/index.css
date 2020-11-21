@@ -94,8 +94,10 @@ main {
 
 /* Stats */
 .section-stats {
-  margin-top: 60px;
-  margin-bottom: 60px;
+  /* margin-top: 60px;
+  margin-bottom: 60px; */
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 
 .section-stats p {
@@ -107,9 +109,9 @@ main {
   margin-bottom: 15px;
 }
 
-.stats-square {
+/* .stats-square {
   border: dotted black 3px !important;
-}
+} */
 
 .section-stats .count-up-number {
   font-size: 2rem;
