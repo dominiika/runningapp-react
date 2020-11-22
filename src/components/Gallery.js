@@ -26,9 +26,9 @@ function Gallery() {
             </h4>
 
             <div className="row">
-              {IMAGES.map((image) => {
+              {IMAGES.map((image, index) => {
                 return (
-                  <div className="col s12 m3">
+                  <div className="col s12 m3" key={index}>
                     <img
                       className="materialboxed responsive-img"
                       src={image}

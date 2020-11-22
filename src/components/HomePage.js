@@ -15,6 +15,8 @@ class HomePage extends Component {
         <Divider />
         <IconBoxes />
         <Divider />
+        <Shoes />
+        <Divider />
         <Gallery />
         <Divider />
         <Stats />

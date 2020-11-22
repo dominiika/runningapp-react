@@ -1,9 +1,6 @@
 import React from 'react';
 
 function Shoes() {
-  [...Array(8).keys()].map((el) => {
-    console.log(el);
-  });
   return (
     <section className="section-shoes">
       <div className="container">
@@ -15,10 +12,10 @@ function Shoes() {
           <div className="row">
             {[...Array(4).keys()].map((key) => {
               return (
-                <div className="col s12 m3">
+                <div className="col s12 m3" key={key}>
                   <img
                     className="materialboxed responsive-img"
-                    src="https://source.unsplash.com/1600x900/?trainers"
+                    src={`https://source.unsplash.com/1600x900/?trainers${key}`}
                   />
                 </div>
               );

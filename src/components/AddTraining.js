@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 
 const REQUIRED_ERR = 'This field is required';
 const KEYS = ['name', 'distance', 'tempo', 'time'];
@@ -37,11 +38,6 @@ class AddTraining extends Component {
         return this.state[key] !== '';
       })
     ) {
-      console.log(this.state.name);
-      console.log(this.state.distance);
-      console.log(this.state.tempo);
-      console.log(this.state.time);
-
       this.fetchAddTraining();
     }
   };
@@ -84,13 +80,13 @@ class AddTraining extends Component {
         if (resStatus === 201) {
           this.setState({ errMsg: null });
           document.getElementById('add-training').M_Modal.close();
+          this.props.history.push('/trainings');
         } else {
-          this.setState({ errMsg: res.msg });
-          // KEYS.map((key) => {
-          //   document
-          //     .getElementById(`add-training-${key}`)
-          //     .classList.add('invalid');
-          // });
+          if (res.msg) {
+            this.setState({ errMsg: res.msg });
+          } else if (res.message) {
+            this.setState({ errMsg: res.message });
+          }
         }
       })
       .catch((err) => console.log(err));
@@ -167,4 +163,4 @@ class AddTraining extends Component {
   }
 }
 
-export default AddTraining;
+export default withRouter(AddTraining);

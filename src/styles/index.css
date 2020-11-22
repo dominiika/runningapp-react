@@ -191,6 +191,22 @@ footer i:hover {
   font-size: 1.2rem;
 }
 
+/* Training */
+.training .training-name {
+  width: 10%;
+  display: block;
+}
+
+.training .more-details {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+}
+
+.training .delete-training {
+  cursor: pointer;
+}
+
 /* Shoes */
 
 .section-shoes {
@@ -198,7 +214,7 @@ footer i:hover {
 }
 
 .section-shoes .photos {
-  margin-bottom: 30px;
+  padding-bottom: 60px;
 }
 /* */
 
