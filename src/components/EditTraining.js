@@ -1,27 +1,35 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router';
 
 const REQUIRED_ERR = 'This field is required';
 const KEYS = ['name', 'distance', 'tempo', 'time'];
 
-class AddTraining extends Component {
+class EditTraining extends Component {
   state = {
     name: '',
     distance: '',
     tempo: '',
     time: '',
-    nameErr: null,
+    // nameErr: null,
     distanceErr: null,
     tempoErr: null,
     timeErr: null,
     errMsg: null,
   };
 
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    this.setState({
+      name: nextProps.training.name,
+      distance: nextProps.training.distance,
+      tempo: nextProps.training.avg_tempo,
+      time: nextProps.training.time_in_seconds,
+    });
+  }
+
   handleInputChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
 
     let name = event.target.name;
-    let input = document.getElementById(`add-training-${name}`);
+    let input = document.getElementById(`edit-training-${name}`);
     input.className = 'text';
     this.setState({
       [name]: event.target.value,
@@ -30,15 +38,14 @@ class AddTraining extends Component {
     });
   };
 
-  addTraining = () => {
+  updateTraining = () => {
     this.validateInputs(KEYS);
-
     if (
       KEYS.every((key) => {
         return this.state[key] !== '';
       })
     ) {
-      this.fetchAddTraining();
+      this.fetchUpdateTraining();
     }
   };
 
@@ -47,16 +54,17 @@ class AddTraining extends Component {
       if (this.state[key] === '') {
         console.log('empty ', this.state[key]);
         this.setState({ [`${key}Err`]: REQUIRED_ERR });
-        let input = document.getElementById(`add-training-${key}`);
+        let input = document.getElementById(`edit-training-${key}`);
         input.classList.add('invalid');
       }
     });
   };
 
-  fetchAddTraining = () => {
+  fetchUpdateTraining = () => {
+    console.log('fetching update...');
     let resStatus = 0;
-    fetch(`http://127.0.0.1:5000/trainings`, {
-      method: 'POST',
+    fetch(`http://127.0.0.1:5000/trainings/${this.props.training.id}`, {
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${this.props.cookies.get('token')}`,
@@ -76,10 +84,9 @@ class AddTraining extends Component {
       .then((res) => {
         console.log(res);
 
-        if (resStatus === 201) {
+        if (resStatus === 200) {
           this.setState({ errMsg: null });
-          document.getElementById('add-training').M_Modal.close();
-          this.props.history.push('/trainings');
+          document.getElementById('edit-training').M_Modal.close();
         } else {
           if (res.msg) {
             this.setState({ errMsg: res.msg });
@@ -93,29 +100,18 @@ class AddTraining extends Component {
 
   render() {
     return (
-      <div id="add-training" className="modal">
+      <div id="edit-training" className="modal">
         <div className="modal-content">
-          <h4>NEW TRAINING</h4>
+          <h4>UPDATE {this.props.training.name}</h4>
           <form>
-            <div className="input-field">
-              <input
-                type="text"
-                className="text"
-                name="name"
-                onChange={this.handleInputChange}
-                id="add-training-name"
-              />
-              <label htmlFor="name">Name</label>
-              <span className="err-msg text">{this.state.nameErr}</span>
-            </div>
-
             <div className="input-field">
               <input
                 type="number"
                 className="text"
                 name="distance"
                 onChange={this.handleInputChange}
-                id="add-training-distance"
+                id="edit-training-distance"
+                value={this.state.distance}
               />
               <label htmlFor="distance">Distance (km)</label>
               <span className="err-msg text">{this.state.distanceErr}</span>
@@ -127,7 +123,8 @@ class AddTraining extends Component {
                 className="text"
                 name="tempo"
                 onChange={this.handleInputChange}
-                id="add-training-tempo"
+                id="edit-training-tempo"
+                value={this.state.tempo}
               />
               <label htmlFor="tempo">Average tempo (km/h)</label>
               <span className="err-msg text">{this.state.tempoErr}</span>
@@ -139,7 +136,8 @@ class AddTraining extends Component {
                 className="text"
                 name="time"
                 onChange={this.handleInputChange}
-                id="add-training-time"
+                id="edit-training-time"
+                value={this.state.time}
               />
               <label htmlFor="time">Time (seconds)</label>
               <span className="err-msg text">{this.state.timeErr}</span>
@@ -151,10 +149,10 @@ class AddTraining extends Component {
         <div className="modal-footer">
           <button
             type="submit"
-            onClick={this.addTraining}
+            onClick={this.updateTraining}
             className="btn cyan accent-3 waves-effect waves-dark black-text"
           >
-            Add
+            Save
           </button>
         </div>
       </div>
@@ -162,4 +160,4 @@ class AddTraining extends Component {
   }
 }
 
-export default withRouter(AddTraining);
+export default EditTraining;

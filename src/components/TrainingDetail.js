@@ -1,6 +1,8 @@
 import React, { useEffect, useContext, useState } from 'react';
+import M from 'materialize-css';
 import Header from './Header';
 import Divider from './Divider';
+import EditTraining from './EditTraining';
 import { Context } from '../Store';
 
 function TrainingDetail(props) {
@@ -9,6 +11,8 @@ function TrainingDetail(props) {
   const [training, setTraining] = useState({});
 
   useEffect(() => {
+    M.AutoInit();
+    handleModalInit();
     fetchTraining();
   }, []);
 
@@ -18,7 +22,14 @@ function TrainingDetail(props) {
     }
   });
 
+  const handleModalInit = () => {
+    let options = {};
+    let elems = document.querySelectorAll('.modal');
+    M.Modal.init(elems, options);
+  };
+
   const fetchTraining = () => {
+    console.log('fetched training detail');
     fetch(`http://127.0.0.1:5000/trainings/${id}`, {
       method: 'GET',
       headers: {
@@ -33,6 +44,8 @@ function TrainingDetail(props) {
       })
       .catch((error) => console.log(error));
   };
+
+  console.log('training', training);
 
   return (
     <React.Fragment>
@@ -74,7 +87,10 @@ function TrainingDetail(props) {
                   <h5 className="bolder-text">Your training stats</h5>
                 </div>
                 <div className="col s12 m2">
-                  <i className="fas fa-edit blue-text"></i>
+                  <a href="#edit-training" className="modal-trigger">
+                    <i className="fas fa-edit blue-text"></i>
+                  </a>
+
                   <i className="fas fa-trash-alt red-text"></i>
                 </div>
               </div>
@@ -101,6 +117,8 @@ function TrainingDetail(props) {
           <Divider />
         </React.Fragment>
       ) : null}
+
+      <EditTraining training={training} cookies={props.cookies} />
     </React.Fragment>
   );
 }
