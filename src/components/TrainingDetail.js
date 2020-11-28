@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useContext, useState, useRef } from 'react';
 import M from 'materialize-css';
 import Header from './Header';
 import Divider from './Divider';
@@ -45,7 +45,9 @@ function TrainingDetail(props) {
       .catch((error) => console.log(error));
   };
 
-  console.log('training', training);
+  const handleLoadTraining = (training) => {
+    setTraining(training);
+  };
 
   return (
     <React.Fragment>
@@ -118,7 +120,11 @@ function TrainingDetail(props) {
         </React.Fragment>
       ) : null}
 
-      <EditTraining training={training} cookies={props.cookies} />
+      <EditTraining
+        training={training}
+        cookies={props.cookies}
+        onLoadTraining={handleLoadTraining}
+      />
     </React.Fragment>
   );
 }

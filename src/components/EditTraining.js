@@ -86,6 +86,7 @@ class EditTraining extends Component {
 
         if (resStatus === 200) {
           this.setState({ errMsg: null });
+          this.props.onLoadTraining(res);
           document.getElementById('edit-training').M_Modal.close();
         } else {
           if (res.msg) {
