@@ -8,8 +8,6 @@ import TrainingsList from './TrainingsList';
 import TrainingDetail from './TrainingDetail';
 
 function Main(props) {
-  console.log('cookies', props.cookies);
-
   return (
     <React.Fragment>
       <Navbar cookies={props.cookies} />

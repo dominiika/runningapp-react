@@ -95,7 +95,7 @@ function TrainingDetail(props) {
                   </a>
 
                   <a href="#delete-training" className="modal-trigger">
-                    <i className="fas fa-trash-alt red-text"></i>
+                    <i className="fas fa-times red-text small"></i>
                   </a>
                 </div>
               </div>

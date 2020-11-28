@@ -20,10 +20,6 @@ function TrainingsList(props) {
     }
   });
 
-  // const reloadTraining = () => {
-  //   fetchTrainings();
-  // };
-
   const fetchTrainings = () => {
     fetch(`http://127.0.0.1:5000/trainings`, {
       method: 'GET',
@@ -53,7 +49,7 @@ function TrainingsList(props) {
                   <div key={training.id}>
                     <ul className="collection z-depth-2">
                       <li className="collection-item avatar">
-                        <Training training={training} />
+                        <Training training={training} cookies={props.cookies} />
                       </li>
                     </ul>
                   </div>

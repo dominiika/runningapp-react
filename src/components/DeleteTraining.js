@@ -14,6 +14,7 @@ function DeleteTraining(props) {
       },
     });
     setGlobalState({ didLogIn: false, didLogOut: false, refetch: true });
+    closeModal();
     props.history.push('/trainings');
   };
 

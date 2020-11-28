@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import M from 'materialize-css';
+import DeleteTraining from './DeleteTraining';
 
 function Training(props) {
+  useEffect(() => {
+    M.AutoInit();
+    handleModalInit();
+  }, []);
+
+  const handleModalInit = () => {
+    let options = {};
+    let elems = document.querySelectorAll('.modal');
+    M.Modal.init(elems, options);
+  };
+
   return (
     <div className="training">
       <img src="images/yuna.jpg" alt="" className="circle" />
@@ -19,7 +32,10 @@ function Training(props) {
           </p>
         </div>
         <div className="col s2">
-          <i className="fas fa-times red-text small secondary-content delete-training"></i>
+          <a href="#delete-training" className="modal-trigger">
+            <i className="fas fa-times red-text small secondary-content delete-training"></i>
+          </a>
+          {/* <i className="fas fa-times red-text small secondary-content delete-training"></i> */}
           <br />
           <Link to={`/trainings/${props.training.id}`} className="more-details">
             See more details
@@ -30,6 +46,7 @@ function Training(props) {
           </Link>
         </div>
       </div>
+      <DeleteTraining training={props.training} cookies={props.cookies} />
     </div>
   );
 }
