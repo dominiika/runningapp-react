@@ -79,7 +79,7 @@ class AddTraining extends Component {
         if (resStatus === 201) {
           this.setState({ errMsg: null });
           document.getElementById('add-training').M_Modal.close();
-          this.props.history.push('/trainings');
+          this.props.history.push(`/trainings/${res.id}`);
         } else {
           if (res.msg) {
             this.setState({ errMsg: res.msg });

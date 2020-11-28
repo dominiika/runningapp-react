@@ -29,19 +29,21 @@ function DeleteTraining(props) {
         <p>Are you sure you want to delete this training?</p>
       </div>
       <div className="modal-footer">
-        <button
-          type="submit"
-          onClick={deleteTraining}
-          className="btn red darken-2 waves-effect waves-dark black-text"
-        >
-          Yes
-        </button>
-        <button
-          className="btn blue lighten-4 waves-effect waves-dark black-text"
-          onClick={closeModal}
-        >
-          No
-        </button>
+        <div className="center">
+          <button
+            type="submit"
+            onClick={deleteTraining}
+            className="btn red darken-2 waves-effect waves-dark black-text white-text"
+          >
+            Yes
+          </button>
+          <button
+            className="btn green accent-4 waves-effect waves-dark black-text white-text"
+            onClick={closeModal}
+          >
+            No
+          </button>
+        </div>
       </div>
     </div>
   );

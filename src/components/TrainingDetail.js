@@ -91,11 +91,11 @@ function TrainingDetail(props) {
                 </div>
                 <div className="col s12 m2">
                   <a href="#edit-training" className="modal-trigger">
-                    <i className="fas fa-edit blue-text"></i>
+                    <i className="fas fa-edit green-text text-accent-4 edit-training"></i>
                   </a>
 
                   <a href="#delete-training" className="modal-trigger">
-                    <i className="fas fa-times red-text small"></i>
+                    <i className="fas fa-times red-text delete-training"></i>
                   </a>
                 </div>
               </div>

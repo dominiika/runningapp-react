@@ -126,9 +126,12 @@ function Navbar(props) {
             </div>
           </li>
           <li>
-            <Link to="#">
+            <a href="#add-training" className="modal-trigger">
               <i className="material-icons black-text">add</i>
-            </Link>
+            </a>
+            {/* <Link to="#">
+              <i className="material-icons black-text">add</i>
+            </Link> */}
           </li>
           <li>
             <Link to="/trainings">Trainings</Link>

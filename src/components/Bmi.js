@@ -24,9 +24,9 @@ class Bmi extends Component {
   getMessage = (bmi) => {
     if (bmi < 18.5) {
       this.setState({ msg: "You're underweight." });
-    } else if (18.5 <= bmi <= 24.9) {
+    } else if (18.5 <= bmi && bmi <= 24.9) {
       this.setState({ msg: 'Your weight is correct.' });
-    } else if (25 <= bmi <= 29.9) {
+    } else if (25 <= bmi && bmi <= 29.9) {
       this.setState({ msg: "You're overweight." });
     } else {
       this.setState({ msg: "You're obese." });

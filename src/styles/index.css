@@ -191,6 +191,12 @@ footer i:hover {
   font-size: 1.2rem;
 }
 
+.delete-training,
+.edit-training {
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
 /* Training */
 .training .training-name {
   width: 10%;
@@ -201,10 +207,6 @@ footer i:hover {
   position: absolute;
   bottom: 15px;
   right: 15px;
-}
-
-.training .delete-training {
-  cursor: pointer;
 }
 
 /* Shoes */
