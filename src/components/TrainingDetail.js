@@ -3,6 +3,7 @@ import M from 'materialize-css';
 import Header from './Header';
 import Divider from './Divider';
 import EditTraining from './EditTraining';
+import DeleteTraining from './DeleteTraining';
 import { Context } from '../Store';
 
 function TrainingDetail(props) {
@@ -93,7 +94,9 @@ function TrainingDetail(props) {
                     <i className="fas fa-edit blue-text"></i>
                   </a>
 
-                  <i className="fas fa-trash-alt red-text"></i>
+                  <a href="#delete-training" className="modal-trigger">
+                    <i className="fas fa-trash-alt red-text"></i>
+                  </a>
                 </div>
               </div>
 
@@ -125,6 +128,7 @@ function TrainingDetail(props) {
         cookies={props.cookies}
         onLoadTraining={handleLoadTraining}
       />
+      <DeleteTraining training={training} cookies={props.cookies} />
     </React.Fragment>
   );
 }

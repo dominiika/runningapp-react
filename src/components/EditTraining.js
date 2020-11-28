@@ -9,7 +9,6 @@ class EditTraining extends Component {
     distance: '',
     tempo: '',
     time: '',
-    // nameErr: null,
     distanceErr: null,
     tempoErr: null,
     timeErr: null,
