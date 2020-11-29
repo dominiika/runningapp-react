@@ -13,6 +13,7 @@ body {
 }
 
 h1,
+h2,
 h4,
 h5,
 h3 {
@@ -148,10 +149,6 @@ main {
 }
 
 /* Footer */
-footer .find-me {
-  margin-left: 26px;
-}
-
 footer i {
   margin: 10px;
   color: #f5f5f5;
@@ -168,7 +165,8 @@ footer i:hover {
 /* Header */
 .section-header {
   position: relative;
-  background: url(../assets/running21.jpg);
+  /* background: url(../assets/running21.jpg); */
+  background: url(../assets/header-shoes.jpg);
   background-size: center;
   /* border-top: #333 solid 5px; */
   border-bottom: #333 solid 5px;

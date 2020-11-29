@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useContext } from 'react';
 import Training from './Training';
-import Header from './Header';
 import Divider from './Divider';
 import { Context } from '../Store';
+import Header from './Header';
 
 function TrainingsList(props) {
   const [globalState, setGlobalState] = useContext(Context);
@@ -40,12 +40,12 @@ function TrainingsList(props) {
     <React.Fragment>
       <Header />
       <Divider />
-      <section>
+      <section className="section-trainings-list">
+        <h2 className="center bolder-text">Your trainings</h2>
+        <div className="divider"></div>
         <div className="container">
           {trainings && trainings.length > 0 ? (
             <React.Fragment>
-              <h3 className="center">Your trainings</h3>
-              <div className="divider"></div>
               <br />
               {trainings.map((training) => {
                 return (

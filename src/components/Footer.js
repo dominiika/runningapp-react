@@ -15,7 +15,7 @@ function Footer() {
   return (
     <footer className="page-footer grey darken-4 white-text">
       <div className="container">
-        <div className="row">
+        <div className="row center">
           <div className="col l6 m6 s12">
             <h5 className="white-text">
               <i className="material-icons cyan-text text-accent-3">
@@ -30,7 +30,7 @@ function Footer() {
             </p>
           </div>
           <div className="col l4 offset-l2 m5 offset-m1 s8 offset-s4">
-            <h5 className="white-text find-me">Find me</h5>
+            <h5 className="find-me center cyan-text text-accent-3">Find me</h5>
             <a href="https://github.com/dominiika/" target="blank_">
               <i className="fab fa-github small"></i>
             </a>

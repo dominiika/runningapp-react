@@ -100,7 +100,11 @@ function Navbar(props) {
                     </li>
                     <Logout cookies={props.cookies} mobile={false} />
                     <li>
-                      <a href="#">
+                      <a
+                        href="#"
+                        className="dropdown-trigger white-text"
+                        data-target="dropdown1"
+                      >
                         <i className="fa fa-user" aria-hidden="true"></i>
                       </a>
                     </li>
@@ -129,9 +133,6 @@ function Navbar(props) {
             <a href="#add-training" className="modal-trigger">
               <i className="material-icons black-text">add</i>
             </a>
-            {/* <Link to="#">
-              <i className="material-icons black-text">add</i>
-            </Link> */}
           </li>
           <li>
             <Link to="/trainings">Trainings</Link>
@@ -171,6 +172,30 @@ function Navbar(props) {
               <Logout cookies={props.cookies} mobile={true} />
             </React.Fragment>
           )}
+        </ul>
+
+        {/* Dropdown menu */}
+        <ul id="dropdown1" class="dropdown-content">
+          <li>
+            <a href="#!">one</a>
+          </li>
+          <li>
+            <a href="#!">two</a>
+          </li>
+          <li class="divider" tabIndex="-1"></li>
+          <li>
+            <a href="#!">three</a>
+          </li>
+          <li>
+            <a href="#!">
+              <i class="material-icons">view_module</i>four
+            </a>
+          </li>
+          <li>
+            <a href="#!">
+              <i class="material-icons">cloud</i>five
+            </a>
+          </li>
         </ul>
       </header>
 
