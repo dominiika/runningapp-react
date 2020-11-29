@@ -175,25 +175,25 @@ function Navbar(props) {
         </ul>
 
         {/* Dropdown menu */}
-        <ul id="dropdown1" class="dropdown-content">
+        <ul id="dropdown1" className="dropdown-content">
           <li>
             <a href="#!">one</a>
           </li>
           <li>
             <a href="#!">two</a>
           </li>
-          <li class="divider" tabIndex="-1"></li>
+          <li className="divider" tabIndex="-1"></li>
           <li>
             <a href="#!">three</a>
           </li>
           <li>
             <a href="#!">
-              <i class="material-icons">view_module</i>four
+              <i className="material-icons">view_module</i>four
             </a>
           </li>
           <li>
             <a href="#!">
-              <i class="material-icons">cloud</i>five
+              <i className="material-icons">cloud</i>five
             </a>
           </li>
         </ul>
