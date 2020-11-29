@@ -41,9 +41,9 @@ function TrainingsList(props) {
       <Header />
       <Divider />
       <section className="section-trainings-list">
-        <h2 className="center bolder-text">Your trainings</h2>
-        <div className="divider"></div>
         <div className="container">
+          <h2 className="center bolder-text">Your trainings</h2>
+          <div className="divider"></div>
           {trainings && trainings.length > 0 ? (
             <React.Fragment>
               <br />

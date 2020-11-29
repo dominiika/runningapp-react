@@ -64,27 +64,27 @@ function TrainingDetail(props) {
           <Header />
           <Divider />
           <section className="section-training-detail">
-            <h2 className="center bolder-text">{training.name}</h2>
-            <div className="divider"></div>
             <div className="container">
+              <h2 className="center bolder-text">{training.name}</h2>
+              <div className="divider"></div>
               <p className="center grey-text">{training.date}</p>
               <div className="row training-squares">
                 <div className="col s12 m4 center">
-                  <div className="card-panel blue accent-3 white-text z-depth-2">
+                  <div className="card-panel cyan darken-2 white-text z-depth-2">
                     <i className="fas fa-fire-alt small"></i>
                     <p>{training.calories} calories burnt</p>
                   </div>
                 </div>
 
                 <div className="col s12 m4 center">
-                  <div className="card-panel indigo darken-3 white-text z-depth-2">
+                  <div className="card-panel grey darken-3 white-text z-depth-2">
                     <i className="fas fa-running small"></i>
                     <p>{training.distance} kilometers run</p>
                   </div>
                 </div>
 
                 <div className="col s12 m4 center">
-                  <div className="card-panel green accent-4 white-text z-depth-2">
+                  <div className="card-panel cyan accent-4 white-text z-depth-2">
                     <i className="fas fa-clock small"></i>
                     <p>{training.time_in_seconds / 60} minutes</p>
                   </div>
@@ -98,7 +98,7 @@ function TrainingDetail(props) {
                   </div>
                   <div className="col s12 m2">
                     <a href="#edit-training" className="modal-trigger">
-                      <i className="fas fa-edit green-text text-accent-4 edit-training"></i>
+                      <i className="fas fa-edit grey-text text-darken-3 edit-training"></i>
                     </a>
 
                     <a href="#delete-training" className="modal-trigger">

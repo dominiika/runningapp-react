@@ -61,7 +61,6 @@ function UserProfile(props) {
           </div>
           <div className="col s12 m4">
             <br />
-
             <button className="btn cyan accent-3 waves-effect waves-dark black-text">
               Get daily caloric needs
             </button>
