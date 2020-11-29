@@ -16,7 +16,11 @@ function About() {
             <img src={shoes} className=" responsive-img" alt="" />
           </div>
           <div className="col s12 m6">
-            <h3>About RunUp</h3>
+            <h3>
+              About
+              <i className="material-icons large grey-text text-accent-4 icon-logo"></i>
+              RunUp
+            </h3>
             <p className="flow-text">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam,
               voluptatem tempore porro officia et eos pariatur ducimus iure

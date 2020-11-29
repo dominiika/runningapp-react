@@ -23,6 +23,13 @@ function TrainingDetail(props) {
     }
   });
 
+  // componentDidUpdate(prevProps) {
+  //   if (prevProps.match.params.id !== this.props.match.params.id) {
+  //     this.fetchArtist(this.props.match.params.id);
+  //     this.fetchSongs(this.props.match.params.id);
+  //   }
+  // }
+
   const handleModalInit = () => {
     let options = {};
     let elems = document.querySelectorAll('.modal');

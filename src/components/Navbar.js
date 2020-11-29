@@ -51,7 +51,7 @@ function Navbar(props) {
                 <i className="material-icons large cyan-text text-accent-3 icon-logo">
                   directions_run
                 </i>
-                <strong>RunUp</strong>
+                <strong className="logo-text">RunUp</strong>
               </Link>
               <Link
                 to="#"

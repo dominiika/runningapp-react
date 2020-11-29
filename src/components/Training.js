@@ -19,7 +19,9 @@ function Training(props) {
     <div className="training">
       <img src="images/yuna.jpg" alt="" className="circle" />
       <Link to={`/trainings/${props.training.id}`} className="training-name">
-        <h5 className="training-name">{props.training.name}</h5>
+        <h5 className="training-name grey-text text-darken-4">
+          {props.training.name.toUpperCase()}
+        </h5>
       </Link>
       <div className="row">
         <div className="col s10">

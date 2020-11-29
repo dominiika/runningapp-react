@@ -38,17 +38,20 @@ function TrainingsList(props) {
 
   return (
     <React.Fragment>
-      <Header title="Your trainings" />
+      <Header />
       <Divider />
       <section>
         <div className="container">
           {trainings && trainings.length > 0 ? (
             <React.Fragment>
+              <h3 className="center">Your trainings</h3>
+              <div className="divider"></div>
+              <br />
               {trainings.map((training) => {
                 return (
                   <div key={training.id}>
                     <ul className="collection z-depth-2">
-                      <li className="collection-item avatar">
+                      <li className="collection-item avatar grey lighten-5">
                         <Training training={training} cookies={props.cookies} />
                       </li>
                     </ul>
