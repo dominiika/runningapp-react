@@ -60,7 +60,6 @@ class EditTraining extends Component {
   };
 
   fetchUpdateTraining = () => {
-    console.log('fetching update...');
     let resStatus = 0;
     fetch(`http://127.0.0.1:5000/trainings/${this.props.training.id}`, {
       method: 'PUT',

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Divider from './Divider';
 import Header from './Header';
+import EditUserProfile from './EditUserProfile';
 
 function UserProfile(props) {
   const [user, setUser] = useState({});
@@ -10,6 +12,10 @@ function UserProfile(props) {
       fetchUser();
     }
   }, []);
+
+  const handleLoadUserProfile = (userProfile) => {
+    setUserProfile(userProfile);
+  };
 
   const fetchUser = () => {
     console.log('fetched  detail');
@@ -29,8 +35,6 @@ function UserProfile(props) {
       .catch((error) => console.log(error));
   };
 
-  console.log('user', user);
-  console.log('user profile', userProfile);
   return (
     <section className="section-user-profile">
       <Header />
@@ -41,36 +45,51 @@ function UserProfile(props) {
         <div className="row">
           <div className="col s12 m8">
             <p className="bolder-text">Username: {user.username}</p>
+            <p className="bolder-text">Age: {userProfile.age}</p>
             <p className="bolder-text">Gender: {userProfile.gender}</p>
             <p className="bolder-text">Height: {userProfile.height}</p>
             <p className="bolder-text">Weight: {userProfile.weight}</p>
-            {userProfile.bmi !== 0 && (
-              <p className="bolder-text">BMI: {userProfile.bmi}</p>
-            )}
-            {userProfile.daily_cal !== 0 && (
-              <p className="bolder-text">
-                Daily caloric needs: {userProfile.daily_cal}
-              </p>
-            )}
+            <p className="bolder-text">BMI: {userProfile.bmi}</p>
+
+            <p className="bolder-text">
+              Daily caloric needs: {userProfile.daily_cal}
+            </p>
+
             <p className="bolder-text">
               Trainings number: {userProfile.trainings_number}
             </p>
             <p className="bolder-text">
               All kilometers run: {userProfile.kilometers_run}
             </p>
+            <Link to={`/trainings`}>
+              See your trainings
+              <i
+                style={{ paddingLeft: '5px' }}
+                className="fas fa-angle-double-right"
+              ></i>
+            </Link>
           </div>
           <div className="col s12 m4">
             <br />
-            <button className="btn cyan accent-3 waves-effect waves-dark black-text">
-              Get daily caloric needs
-            </button>
-            <button className="btn cyan accent-3 waves-effect waves-dark black-text">
-              Get BMI
-            </button>
+            <a
+              href="#edit-user-profile"
+              className="modal-trigger btn cyan accent-3 waves-effect waves-dark black-text"
+            >
+              Edit
+            </a>
+
+            <br />
           </div>
         </div>
       </div>
       <br />
+
+      <EditUserProfile
+        cookies={props.cookies}
+        user={user}
+        userProfile={userProfile}
+        onLoadUserProfile={handleLoadUserProfile}
+      />
     </section>
   );
 }
