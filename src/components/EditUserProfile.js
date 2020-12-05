@@ -126,10 +126,9 @@ class EditUserProfile extends Component {
                       type="radio"
                       onChange={this.handleRadioInputChange}
                       className="user-profile-gender"
-                      value={this.props.userProfile.gender}
-                      // checked
+                      value="Female"
                     />
-                    <span>{this.props.userProfile.gender}</span>
+                    <span>Female</span>
                   </label>
                 </p>
                 <p>
@@ -139,9 +138,12 @@ class EditUserProfile extends Component {
                       type="radio"
                       onChange={this.handleRadioInputChange}
                       className="user-profile-gender"
-                      value="Female"
+                      // value={this.props.userProfile.gender}
+                      value="Male"
+                      // checked
                     />
-                    <span>Female</span>
+                    {/* <span>{this.props.userProfile.gender}</span> */}
+                    <span>Male</span>
                   </label>
                 </p>
 

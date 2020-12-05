@@ -91,6 +91,12 @@ function Navbar(props) {
                     BMI
                   </a>
                 </li>
+                <li>
+                  <a className="last-nav-li modal-trigger" href="#daily-needs">
+                    Daily Caloric Needs
+                  </a>
+                </li>
+
                 {props.cookies.get('token') && (
                   <React.Fragment>
                     <li>
@@ -157,6 +163,11 @@ function Navbar(props) {
               BMI
             </a>
           </li>
+          <li>
+            <a className="last-nav-li modal-trigger" href="#daily-needs">
+              Daily Caloric Needs
+            </a>
+          </li>
           {props.cookies.get('token') && (
             <React.Fragment>
               <li>
@@ -177,25 +188,12 @@ function Navbar(props) {
         {/* Dropdown menu */}
         <ul id="dropdown1" className="dropdown-content">
           <li>
-            <a href="#!">one</a>
+            <a href="/profile">Your Profile</a>
           </li>
           <li>
-            <a href="#!">two</a>
+            <a href="#!">Change Password</a>
           </li>
           <li className="divider" tabIndex="-1"></li>
-          <li>
-            <a href="#!">three</a>
-          </li>
-          <li>
-            <a href="#!">
-              <i className="material-icons">view_module</i>four
-            </a>
-          </li>
-          <li>
-            <a href="#!">
-              <i className="material-icons">cloud</i>five
-            </a>
-          </li>
         </ul>
       </header>
 
