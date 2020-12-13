@@ -1,17 +1,36 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import Divider from './Divider';
 import Header from './Header';
 import EditUserProfile from './EditUserProfile';
+import { Context } from '../Store';
 
 function UserProfile(props) {
+  const [globalState, setGlobalState] = useContext(Context);
   const [user, setUser] = useState({});
   const [userProfile, setUserProfile] = useState({});
+  const [msg, setMsg] = useState('');
+
   useEffect(() => {
     if (props.cookies.get('token')) {
       fetchUser();
     }
   }, []);
+
+  useEffect(() => {
+    if (globalState.refetch) {
+      if (typeof props.cookies.get('user') !== 'undefined') {
+        fetchUser();
+      } else {
+        setUser({});
+        setUserProfile({});
+        setMsg('');
+        setGlobalState({ didLogIn: false, didLogOut: false, refetch: false });
+        props.history.push(`/`);
+      }
+    }
+  });
 
   const handleLoadUserProfile = (userProfile) => {
     setUserProfile(userProfile);
@@ -30,9 +49,22 @@ function UserProfile(props) {
       .then((res) => {
         setUser(res);
         setUserProfile(res.user_profile[0]);
-        // setGlobalState({ didLogIn: false, didLogOut: false, refetch: false });
+        getBmiMsg(res.user_profile[0].bmi);
+        setGlobalState({ didLogIn: false, didLogOut: false, refetch: false });
       })
       .catch((error) => console.log(error));
+  };
+
+  const getBmiMsg = (bmi) => {
+    if (bmi < 18.5) {
+      setMsg('(underweight)');
+    } else if (18.5 <= bmi && bmi <= 24.9) {
+      setMsg('(correct BMI)');
+    } else if (25 <= bmi && bmi <= 29.9) {
+      setMsg('(overweight)');
+    } else {
+      setMsg('(obese)');
+    }
   };
 
   return (
@@ -49,7 +81,9 @@ function UserProfile(props) {
             <p className="bolder-text">Gender: {userProfile.gender}</p>
             <p className="bolder-text">Height: {userProfile.height}</p>
             <p className="bolder-text">Weight: {userProfile.weight}</p>
-            <p className="bolder-text">BMI: {userProfile.bmi}</p>
+            <p className="bolder-text">
+              BMI: {userProfile.bmi} {msg}
+            </p>
 
             <p className="bolder-text">
               Daily caloric needs: {userProfile.daily_cal}
@@ -94,4 +128,4 @@ function UserProfile(props) {
   );
 }
 
-export default UserProfile;
+export default withRouter(UserProfile);
