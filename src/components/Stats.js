@@ -7,12 +7,60 @@ import VisibilitySensor from 'react-visibility-sensor';
 
 function Stats() {
   const [focus, setFocus] = useState(false);
+  const [usersNumber, setUsersNumber] = useState(0);
+  const [kilometersNumber, setKilometersNumber] = useState(0);
+  const [caloriesNumber, setCaloriesNumber] = useState(0);
 
   useEffect(() => {
     M.AutoInit();
+    fetchUsersNumber();
+    fetchKilometersNumber();
+    fetchCaloriesNumber();
     document.querySelectorAll('.count');
     Aos.init({ duration: 2000 });
   }, []);
+
+  const fetchUsersNumber = () => {
+    fetch(`http://127.0.0.1:5000/total-users-number`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((resp) => resp.json())
+      .then((res) => {
+        setUsersNumber(res.users_number);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const fetchKilometersNumber = () => {
+    fetch(`http://127.0.0.1:5000/total-kilometers-number`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((resp) => resp.json())
+      .then((res) => {
+        setKilometersNumber(res.kilometers_number);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const fetchCaloriesNumber = () => {
+    fetch(`http://127.0.0.1:5000/total-calories-number`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((resp) => resp.json())
+      .then((res) => {
+        setCaloriesNumber(res.calories_number);
+      })
+      .catch((error) => console.log(error));
+  };
 
   return (
     <React.Fragment>
@@ -27,7 +75,7 @@ function Stats() {
                   duration={5}
                   start={focus ? 0 : null}
                   redraw={true}
-                  end={50}
+                  end={usersNumber}
                 >
                   {({ countUpRef }) => (
                     <div>
@@ -58,7 +106,7 @@ function Stats() {
                 <CountUp
                   className="counter"
                   start={focus ? 0 : null}
-                  end={5000}
+                  end={kilometersNumber}
                   duration={3.5}
                   useEasing={true}
                   useGrouping={true}
@@ -92,7 +140,7 @@ function Stats() {
                 <CountUp
                   className="counter"
                   start={focus ? 0 : null}
-                  end={3666}
+                  end={caloriesNumber}
                   duration={3.5}
                   useEasing={true}
                   useGrouping={true}
