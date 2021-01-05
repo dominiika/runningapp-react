@@ -64,7 +64,6 @@ class AddTraining extends Component {
       body: JSON.stringify({
         name: this.state.name,
         distance: this.state.distance,
-        // avg_tempo: this.state.tempo,
         time_in_seconds: this.state.time,
       }),
     })
@@ -120,18 +119,6 @@ class AddTraining extends Component {
               <label htmlFor="distance">Distance (km)</label>
               <span className="err-msg text">{this.state.distanceErr}</span>
             </div>
-
-            {/* <div className="input-field">
-              <input
-                type="number"
-                className="text"
-                name="tempo"
-                onChange={this.handleInputChange}
-                id="add-training-tempo"
-              />
-              <label htmlFor="tempo">Average tempo (km/h)</label>
-              <span className="err-msg text">{this.state.tempoErr}</span>
-            </div> */}
 
             <div className="input-field">
               <input
