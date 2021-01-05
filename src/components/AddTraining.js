@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 
 const REQUIRED_ERR = 'This field is required';
-const KEYS = ['name', 'distance', 'tempo', 'time'];
+const KEYS = ['name', 'distance', 'time'];
 
 class AddTraining extends Component {
   state = {
@@ -64,7 +64,7 @@ class AddTraining extends Component {
       body: JSON.stringify({
         name: this.state.name,
         distance: this.state.distance,
-        avg_tempo: this.state.tempo,
+        // avg_tempo: this.state.tempo,
         time_in_seconds: this.state.time,
       }),
     })
@@ -121,7 +121,7 @@ class AddTraining extends Component {
               <span className="err-msg text">{this.state.distanceErr}</span>
             </div>
 
-            <div className="input-field">
+            {/* <div className="input-field">
               <input
                 type="number"
                 className="text"
@@ -131,7 +131,7 @@ class AddTraining extends Component {
               />
               <label htmlFor="tempo">Average tempo (km/h)</label>
               <span className="err-msg text">{this.state.tempoErr}</span>
-            </div>
+            </div> */}
 
             <div className="input-field">
               <input

@@ -17,12 +17,15 @@ function Logout(props) {
     let path = '/';
     props.cookies.remove('token', {
       path: path,
+      secure: true,
     });
     props.cookies.remove('user', {
       path: path,
+      secure: true,
     });
     props.cookies.remove('username', {
       path: path,
+      secure: true,
     });
   };
 

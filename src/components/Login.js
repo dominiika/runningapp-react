@@ -85,14 +85,17 @@ function Login(props) {
     props.cookies.set('token', res.access_token, {
       expires: tomorrow,
       path: path,
+      secure: true,
     });
     props.cookies.set('user', res.user, {
       expires: tomorrow,
       path: path,
+      secure: true,
     });
     props.cookies.set('username', res.username, {
       expires: tomorrow,
       path: path,
+      secure: true,
     });
   };
 
