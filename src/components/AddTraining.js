@@ -8,11 +8,9 @@ class AddTraining extends Component {
   state = {
     name: '',
     distance: '',
-    tempo: '',
     time: '',
     nameErr: null,
     distanceErr: null,
-    tempoErr: null,
     timeErr: null,
     errMsg: null,
   };

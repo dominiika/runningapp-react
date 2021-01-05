@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 
 const REQUIRED_ERR = 'This field is required';
-const KEYS = ['name', 'distance', 'tempo', 'time'];
+const KEYS = ['name', 'distance', 'time'];
 
 class EditTraining extends Component {
   state = {
     name: '',
     distance: '',
-    tempo: '',
     time: '',
     distanceErr: null,
     tempoErr: null,
-    timeErr: null,
     errMsg: null,
   };
 
@@ -19,7 +17,6 @@ class EditTraining extends Component {
     this.setState({
       name: nextProps.training.name,
       distance: nextProps.training.distance,
-      tempo: nextProps.training.avg_tempo,
       time: nextProps.training.time_in_seconds,
     });
   }
@@ -70,7 +67,6 @@ class EditTraining extends Component {
       body: JSON.stringify({
         name: this.state.name,
         distance: this.state.distance,
-        avg_tempo: this.state.tempo,
         time_in_seconds: this.state.time,
       }),
     })
@@ -114,19 +110,6 @@ class EditTraining extends Component {
               />
               <label htmlFor="distance">Distance (km)</label>
               <span className="err-msg text">{this.state.distanceErr}</span>
-            </div>
-
-            <div className="input-field">
-              <input
-                type="number"
-                className="text"
-                name="tempo"
-                onChange={this.handleInputChange}
-                id="edit-training-tempo"
-                value={this.state.tempo}
-              />
-              <label htmlFor="tempo">Average tempo (km/h)</label>
-              <span className="err-msg text">{this.state.tempoErr}</span>
             </div>
 
             <div className="input-field">
