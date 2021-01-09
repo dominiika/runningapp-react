@@ -76,6 +76,7 @@ class AddTraining extends Component {
         if (resStatus === 201) {
           this.setState({ errMsg: null });
           document.getElementById('add-training').M_Modal.close();
+          this.clearInputs();
           this.props.history.push(`/trainings/${res.id}`);
         } else {
           if (res.msg) {
@@ -86,6 +87,21 @@ class AddTraining extends Component {
         }
       })
       .catch((err) => console.log(err));
+  };
+
+  clearInputs = () => {
+    let inputs = ['name', 'distance', 'time'];
+    this.setState({ errMsg: null });
+
+    inputs.map((el) => {
+      let input = document.getElementById(`add-training-${el}`);
+      input.className = 'text';
+      input.value = '';
+      this.setState({
+        [el]: '',
+        [`${el}Err`]: null,
+      });
+    });
   };
 
   render() {

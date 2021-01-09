@@ -34,7 +34,11 @@ function Training(props) {
           </p>
         </div>
         <div className="col s2">
-          <a href="#delete-training" className="modal-trigger">
+          <a
+            href="#delete-training"
+            className="modal-trigger"
+            title={props.training.id}
+          >
             <i className="fas fa-times red-text small secondary-content delete-training"></i>
           </a>
           {/* <i className="fas fa-times red-text small secondary-content delete-training"></i> */}
