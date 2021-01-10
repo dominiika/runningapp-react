@@ -58,7 +58,6 @@ class DailyNeeds extends Component {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${this.props.cookies.get('token')}`,
       },
       body: JSON.stringify({
         age: this.state.age,
