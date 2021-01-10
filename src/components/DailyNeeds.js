@@ -16,7 +16,6 @@ class DailyNeeds extends Component {
     weightErr: '',
     genderErr: '',
     trainingsPerWeekErr: '',
-    // errMsg: null,
   };
 
   handleInputChange = (event) => {
@@ -28,12 +27,10 @@ class DailyNeeds extends Component {
     this.setState({
       [name]: event.target.value,
       [`${name}Err`]: null,
-      // errMsg: null,
     });
   };
 
   calculateDailyCaloricNeeds = () => {
-    this.setState({ dailyNeeds: 0 });
     this.validate(KEYS);
     if (
       KEYS.every((key) => {
@@ -41,13 +38,14 @@ class DailyNeeds extends Component {
       })
     ) {
       this.fetchDailyCaloricNeeds();
+    } else {
+      this.setState({ dailyNeeds: 0 });
     }
   };
 
   validate = (keys) => {
     keys.map((key) => {
       if (this.state[key] === '' || this.state[key] === 0) {
-        console.log(`${key} is null`);
         this.setState({ [`${key}Err`]: REQUIRED_ERR });
         let input = document.getElementById(`daily-needs-${key}`);
         input.classList.add('invalid');
@@ -56,7 +54,6 @@ class DailyNeeds extends Component {
   };
 
   fetchDailyCaloricNeeds = () => {
-    let resStatus = 0;
     fetch(`http://127.0.0.1:5000/daily-calories`, {
       method: 'POST',
       headers: {
@@ -72,29 +69,15 @@ class DailyNeeds extends Component {
       }),
     })
       .then((res) => {
-        resStatus = res.status;
-        console.log(res.status);
         return res.json();
       })
       .then((res) => {
-        console.log(res);
-
-        if (resStatus === 201) {
-          this.setState({ dailyNeeds: res.daily_caloric_needs });
-          // this.clearInputs();
-          // } else {
-          // if (res.msg) {
-          //   this.setState({ errMsg: res.msg });
-          // } else if (res.message) {
-          //   this.setState({ errMsg: res.message });
-          // }
-        }
+        this.setState({ dailyNeeds: res.daily_caloric_needs });
       })
       .catch((err) => console.log(err));
   };
 
   render() {
-    console.log(this.state);
     return (
       <React.Fragment>
         <div id="daily-needs" className="modal">
