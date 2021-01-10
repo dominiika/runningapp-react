@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 const REQUIRED_ERR = 'This field is required';
 const KEYS = ['age', 'height', 'weight', 'gender', 'trainingsPerWeek'];
 
+// https://programmingwithmosh.com/react/create-react-loading-spinner/
+
 class DailyNeeds extends Component {
   state = {
     age: 0,

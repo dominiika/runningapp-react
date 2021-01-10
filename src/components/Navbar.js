@@ -62,15 +62,18 @@ function Navbar(props) {
                 <i className="material-icons">menu</i>
               </Link>
               <ul id="nav-mobile" className="right hide-on-med-and-down">
-                <li>
-                  <a href="#add-training" className="modal-trigger">
-                    <i className="material-icons">add</i>
-                  </a>
-                </li>
-                <li>
-                  <Link to="/trainings">Trainings</Link>
-                </li>
-                {!props.cookies.get('token') && (
+                {props.cookies.get('token') ? (
+                  <React.Fragment>
+                    <li>
+                      <a href="#add-training" className="modal-trigger">
+                        <i className="material-icons">add</i>
+                      </a>
+                    </li>
+                    <li>
+                      <Link to="/trainings">Trainings</Link>
+                    </li>
+                  </React.Fragment>
+                ) : (
                   <React.Fragment>
                     <li>
                       <a href="#signup" className="modal-trigger">
