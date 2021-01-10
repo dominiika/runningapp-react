@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+const REQUIRED_ERR = 'This field is required';
+const KEYS = ['age', 'height', 'weight', 'gender', 'trainingsPerWeek'];
+
 class DailyNeeds extends Component {
   state = {
     age: 0,
@@ -13,24 +16,41 @@ class DailyNeeds extends Component {
     weightErr: '',
     genderErr: '',
     trainingsPerWeekErr: '',
-    errMsg: null,
+    // errMsg: null,
   };
 
   handleInputChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
+
+    let name = event.target.name;
+    let input = document.getElementById(`daily-needs-${name}`);
+    input.className = 'text';
+    this.setState({
+      [name]: event.target.value,
+      [`${name}Err`]: null,
+      // errMsg: null,
+    });
   };
 
   calculateDailyCaloricNeeds = () => {
-    let keys = Object.keys(this.state).slice(0, 5);
-    this.validate(keys);
-    console.log('Calculating needs...');
+    this.setState({ dailyNeeds: 0 });
+    this.validate(KEYS);
+    if (
+      KEYS.every((key) => {
+        return this.state[key] !== '';
+      })
+    ) {
+      this.fetchDailyCaloricNeeds();
+    }
   };
 
-  validate = (inputs) => {
-    inputs.map((input) => {
-      if (this.state[input] === '' || this.state[input] === 0) {
-        console.log(`${input} is null`);
-        this.setState({ [`${input}Err`]: 'This field may not be empty or 0.' });
+  validate = (keys) => {
+    keys.map((key) => {
+      if (this.state[key] === '' || this.state[key] === 0) {
+        console.log(`${key} is null`);
+        this.setState({ [`${key}Err`]: REQUIRED_ERR });
+        let input = document.getElementById(`daily-needs-${key}`);
+        input.classList.add('invalid');
       }
     });
   };
@@ -60,15 +80,14 @@ class DailyNeeds extends Component {
         console.log(res);
 
         if (resStatus === 201) {
-          this.setState({ errMsg: null });
-          // document.getElementById('daily-needs').M_Modal.close();
+          this.setState({ dailyNeeds: res.daily_caloric_needs });
           // this.clearInputs();
-        } else {
-          if (res.msg) {
-            this.setState({ errMsg: res.msg });
-          } else if (res.message) {
-            this.setState({ errMsg: res.message });
-          }
+          // } else {
+          // if (res.msg) {
+          //   this.setState({ errMsg: res.msg });
+          // } else if (res.message) {
+          //   this.setState({ errMsg: res.message });
+          // }
         }
       })
       .catch((err) => console.log(err));
@@ -84,6 +103,7 @@ class DailyNeeds extends Component {
             <form>
               <div className="input-field">
                 <input
+                  id="daily-needs-age"
                   className="text"
                   name="age"
                   onChange={this.handleInputChange}
@@ -94,6 +114,7 @@ class DailyNeeds extends Component {
               </div>
               <div className="input-field">
                 <input
+                  id="daily-needs-height"
                   className="text"
                   name="height"
                   onChange={this.handleInputChange}
@@ -104,6 +125,7 @@ class DailyNeeds extends Component {
               </div>
               <div className="input-field">
                 <input
+                  id="daily-needs-weight"
                   className="text"
                   name="weight"
                   onChange={this.handleInputChange}
@@ -114,6 +136,7 @@ class DailyNeeds extends Component {
               </div>
               <div className="input-field">
                 <input
+                  id="daily-needs-gender"
                   className="text"
                   name="gender"
                   onChange={this.handleInputChange}
@@ -124,6 +147,7 @@ class DailyNeeds extends Component {
               </div>
               <div className="input-field">
                 <input
+                  id="daily-needs-trainingsPerWeek"
                   className="text"
                   name="trainingsPerWeek"
                   onChange={this.handleInputChange}
