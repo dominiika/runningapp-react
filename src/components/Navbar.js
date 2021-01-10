@@ -5,6 +5,7 @@ import Login from './Login';
 import SignUp from './SignUp';
 import Logout from './Logout';
 import AddTraining from './AddTraining';
+import DailyNeeds from './DailyNeeds';
 import { Link, withRouter } from 'react-router-dom';
 
 function Navbar(props) {
@@ -201,6 +202,7 @@ function Navbar(props) {
       <Login cookies={props.cookies} />
       <SignUp cookies={props.cookies} />
       <AddTraining cookies={props.cookies} />
+      <DailyNeeds cookies={props.cookies} />
     </React.Fragment>
   );
 }
