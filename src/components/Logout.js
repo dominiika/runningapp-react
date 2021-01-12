@@ -12,7 +12,7 @@ function Logout(props) {
         Authorization: props.cookies.get('token'),
       },
     })
-      .then(setGlobalState({ didLogIn: false, didLogOut: true, refetch: true }))
+      .then(setGlobalState({ refetch: true }))
       .catch((err) => console.log(err));
     let path = '/';
     props.cookies.remove('token', {

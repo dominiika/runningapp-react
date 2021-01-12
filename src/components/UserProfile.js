@@ -26,7 +26,7 @@ function UserProfile(props) {
         setUser({});
         setUserProfile({});
         setMsg('');
-        setGlobalState({ didLogIn: false, didLogOut: false, refetch: false });
+        setGlobalState({ refetch: false });
         props.history.push(`/`);
       }
     }
@@ -50,7 +50,7 @@ function UserProfile(props) {
         setUser(res);
         setUserProfile(res.user_profile[0]);
         getBmiMsg(res.user_profile[0].bmi);
-        setGlobalState({ didLogIn: false, didLogOut: false, refetch: false });
+        setGlobalState({ refetch: false });
       })
       .catch((error) => console.log(error));
   };
@@ -111,7 +111,12 @@ function UserProfile(props) {
             >
               Edit
             </a>
-
+            <a
+              // href="#edit-user-profile"
+              className="modal-trigger btn cyan accent-3 waves-effect waves-dark black-text"
+            >
+              Caloric Needs
+            </a>
             <br />
           </div>
         </div>

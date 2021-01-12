@@ -31,7 +31,7 @@ function TrainingsList(props) {
       .then((resp) => resp.json())
       .then((res) => {
         setTrainings(res.trainings);
-        setGlobalState({ didLogIn: false, didLogOut: false, refetch: false });
+        setGlobalState({ refetch: false });
       })
       .catch((error) => console.log(error));
   };

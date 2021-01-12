@@ -13,7 +13,7 @@ function DeleteTraining(props) {
         Authorization: `Bearer ${props.cookies.get('token')}`,
       },
     });
-    setGlobalState({ didLogIn: false, didLogOut: false, refetch: true });
+    setGlobalState({ refetch: true });
     closeModal();
     props.history.push('/trainings');
   };
