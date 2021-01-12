@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Divider from './Divider';
 import Header from './Header';
 import EditUserProfile from './EditUserProfile';
+import DailyNeedsLoggedIn from './DailyNeedsLoggedIn';
 import { Context } from '../Store';
 
 function UserProfile(props) {
@@ -112,7 +113,7 @@ function UserProfile(props) {
               Edit
             </a>
             <a
-              // href="#edit-user-profile"
+              href="#daily-needs-logged-in"
               className="modal-trigger btn cyan accent-3 waves-effect waves-dark black-text"
             >
               Caloric Needs
@@ -126,6 +127,11 @@ function UserProfile(props) {
       <EditUserProfile
         cookies={props.cookies}
         user={user}
+        userProfile={userProfile}
+        onLoadUserProfile={handleLoadUserProfile}
+      />
+      <DailyNeedsLoggedIn
+        cookies={props.cookies}
         userProfile={userProfile}
         onLoadUserProfile={handleLoadUserProfile}
       />
