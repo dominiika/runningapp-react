@@ -14,6 +14,7 @@ function Navbar(props) {
     handleSidenavInit();
     handleSliderInit();
     handleModalInit();
+    handleDropdownInit();
   }, []);
 
   const handleSidenavInit = () => {
@@ -39,6 +40,12 @@ function Navbar(props) {
     let options = {};
     let elems = document.querySelectorAll('.modal');
     M.Modal.init(elems, options);
+  };
+
+  const handleDropdownInit = () => {
+    let options = {};
+    let elems = document.querySelectorAll('.dropdown-trigger');
+    let instances = M.Dropdown.init(elems, options);
   };
 
   return (
@@ -111,7 +118,7 @@ function Navbar(props) {
                     <Logout cookies={props.cookies} mobile={false} />
                     <li>
                       <a
-                        href="#"
+                        href="javascript:;"
                         className="dropdown-trigger white-text"
                         data-target="dropdown1"
                       >
