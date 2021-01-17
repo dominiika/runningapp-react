@@ -33,7 +33,11 @@ function UserProfile(props) {
     }
   });
 
-  const handleLoadUserProfile = (userProfile) => {
+  // fix not updating dynamically dailyNeeds
+  const handleLoadUserProfile = (userProfile, dailyNeeds = '') => {
+    if (dailyNeeds !== '') {
+      userProfile.daily_cal = dailyNeeds;
+    }
     setUserProfile(userProfile);
   };
 

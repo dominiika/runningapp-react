@@ -9,7 +9,7 @@ function Logout(props) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: props.cookies.get('token'),
+        Authorization: `Bearer ${props.cookies.get('token')}`,
       },
     })
       .then(setGlobalState({ refetch: true }))

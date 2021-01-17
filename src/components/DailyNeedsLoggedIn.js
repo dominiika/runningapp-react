@@ -10,7 +10,11 @@ class DailyNeedsLoggedIn extends Component {
     dailyNeeds: 0,
     trainingsPerWeekErr: '',
     saveButton: false,
+    msg: '',
+    isError: false,
   };
+
+  // add styling to msg
 
   handleInputChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
@@ -22,6 +26,8 @@ class DailyNeedsLoggedIn extends Component {
       [name]: event.target.value,
       [`${name}Err`]: null,
       saveButton: false,
+      msg: '',
+      isError: false,
     });
   };
 
@@ -71,7 +77,36 @@ class DailyNeedsLoggedIn extends Component {
   };
 
   saveDailyNeeds = () => {
-    console.log(this.state.dailyNeeds);
+    let resStatus = 0;
+    fetch('http://127.0.0.1:5000/update-daily-needs', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${this.props.cookies.get('token')}`,
+      },
+      body: JSON.stringify({
+        daily_cal: this.state.dailyNeeds,
+      }),
+    })
+      .then((res) => {
+        resStatus = res.status;
+        return res.json();
+      })
+      .then((res) => {
+        if (resStatus === 201) {
+          this.setState({
+            msg: res.message,
+            isError: false,
+          });
+          this.props.onLoadUserProfile(this.props.userProfile, res.daily_cal);
+        } else {
+          this.setState({
+            msg: res.message,
+            isError: true,
+          });
+        }
+      })
+      .catch((err) => console.log(err));
   };
 
   render() {
